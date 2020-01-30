@@ -1,8 +1,15 @@
 'use strict'
 
+// REMEMBER TO UNCOMMENT FORM RESETTING
+
 const store = require('../store')
 
 const onSignUpSuccess = response => {
+  // If tweaking functionality to store token and sign in upon success,
+  // uncomment showing and hiding
+
+  // $('main').show()
+  // $('.sign-in-wrapper').hide()
   $('#message').text(`Successfully signed up! Congrats, ${response.user.email}!`)
   // $('.sign-up-form').trigger('reset')
 }
@@ -20,6 +27,8 @@ const onSignUpFailure = response => {
 }
 
 const onSignInSuccess = response => {
+  $('main').show()
+  $('.sign-in-wrapper').hide()
   $('#message').text(`Successfully signed in! Congrats, ${response.user.email}!`)
   // $('.sign-in-form').trigger('reset')
   store.user = response.user
@@ -41,6 +50,8 @@ const onChangePwFailure = response => {
 }
 
 const onSignOutSuccess = () => {
+  $('main').hide()
+  $('.sign-in-wrapper').show()
   $('#message').text(`Successfully signed out! Congrats, ${store.user.email}!`)
   store.user = null
 }
