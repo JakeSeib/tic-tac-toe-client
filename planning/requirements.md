@@ -34,8 +34,8 @@ Produce documentation in the form of a **README**, which must:
 
 1.  [ ] Use a custom game engine written by you.
 1.  [ ] Be a single-page application, no browser refresh.
-1.  [ ] Render a game board in the browser.
-1.  [ ] Switch turns between X and O (or whichever markers you select).  Tip:  Assume player X is the first player to start the game.
+1.  [x] Render a game board in the browser.
+1.  [x] Switch turns between X and O (or whichever markers you select).  Tip:  Assume player X is the first player to start the game.
 1.  [ ] Visually display which side won if a player gets three in a row or show a draw if neither wins.
 1.  [ ] Support playing multiple games, one at a time.
 1.  [ ] Use jQuery for DOM manipulation and event handling.
