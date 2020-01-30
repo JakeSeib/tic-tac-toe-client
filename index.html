@@ -13,9 +13,8 @@
     </head>
     <body>
 
-      <p id='message'>debugging message goes here</p>
-
       <div class='sign-in-wrapper container'>
+        <p class='message sign-in-message'>debugging message goes here</p>
         <form class='sign-up-form'>
           <fieldset>
             <legend>Sign Up</legend>
@@ -46,25 +45,54 @@
         </form>
       </div>
 
-      <main>
-        <form class='change-pw-form'>
-          <fieldset>
-            <legend>Change Password</legend>
-            <label>Current Password
-              <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
-            </label>
-            <label>New Password
-              <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
-            </label>
-            <input type='submit' value='Change password'>
-          </fieldset>
-        </form>
+      <main class='container-fluid'>
+        <div class='row'>
+          <nav class='main-nav col-md-3'>
+            <form class='change-pw-form'>
+              <fieldset>
+                <legend>Change Password</legend>
+                <label>Current Password
+                  <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
+                </label>
+                <label>New Password
+                  <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
+                </label>
+                <input type='submit' value='Change password'>
+              </fieldset>
+            </form>
 
-        <form class='sign-out-form'>
-          <fieldset>
-            <input type='submit' value='Log Out'>
-          </fieldset>
-        </form>
+            <form class='sign-out-form'>
+              <fieldset>
+                <input type='submit' value='Log Out'>
+              </fieldset>
+            </form>
+          </nav>
+
+          <div class='main-content col-md-9'>
+            <h1>Tic-Tac-Toe</h1>
+            <div class='game-board-container container'>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='0'>_</div>
+                <div class='game-space col-4' data-cell-index='1'>_</div>
+                <div class='game-space col-4' data-cell-index='2'>_</div>
+              </div>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='3'>_</div>
+                <div class='game-space col-4' data-cell-index='4'>_</div>
+                <div class='game-space col-4' data-cell-index='5'>_</div>
+              </div>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='6'>_</div>
+                <div class='game-space col-4' data-cell-index='7'>_</div>
+                <div class='game-space col-4' data-cell-index='8'>_</div>
+              </div>
+            </div>
+            <div class='current-turn-container'></div>
+            <p class='message main-message col-md-9'>debugging message goes here</p>
+          </div>
+        </div>
+
       </main>
+
     </body>
 </html>
