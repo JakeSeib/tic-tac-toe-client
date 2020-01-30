@@ -6,11 +6,20 @@
   box-sizing: border-box;
 }
 
+main {
+  font-family: $default-font-family;
+}
+
 .sign-in-wrapper {
   border: 1px solid $default-border-color;
   font-family: $default-font-family;
 }
 
-main {
-  font-family: $default-font-family;
+.main-nav {
+  border: 1px solid $default-border-color;
+}
+
+.game-space {
+  border: 1px solid $default-border-color;
+  font-size: 30px;
 }

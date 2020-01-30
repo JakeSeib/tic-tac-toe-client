@@ -10,12 +10,12 @@ const onSignUpSuccess = response => {
 
   // $('main').show()
   // $('.sign-in-wrapper').hide()
-  $('#message').text(`Successfully signed up! Congrats, ${response.user.email}!`)
+  $('.message').text(`Successfully signed up! Congrats, ${response.user.email}!`)
   // $('.sign-up-form').trigger('reset')
 }
 
 const onSignUpFailure = response => {
-  $('#message').text(`Failed to sign up!`)
+  $('.message').text(`Failed to sign up!`)
   // $('.sign-up-form').trigger('reset')
 
   // clear the message
@@ -29,35 +29,35 @@ const onSignUpFailure = response => {
 const onSignInSuccess = response => {
   $('main').show()
   $('.sign-in-wrapper').hide()
-  $('#message').text(`Successfully signed in! Congrats, ${response.user.email}!`)
+  $('.message').text(`Successfully signed in! Congrats, ${response.user.email}!`)
   // $('.sign-in-form').trigger('reset')
   store.user = response.user
 }
 
 const onSignInFailure = response => {
-  $('#message').text(`Failed to sign in!`)
+  $('.message').text(`Failed to sign in!`)
   // $('.sign-in-form').trigger('reset')
 }
 
 const onChangePwSuccess = response => {
-  $('#message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
+  $('.message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
   // $('.change-pw-form').trigger('reset')
 }
 
 const onChangePwFailure = response => {
-  $('#message').text(`Failed to change password!`)
+  $('.message').text(`Failed to change password!`)
   // $('.change-pw-form').trigger('reset')
 }
 
 const onSignOutSuccess = () => {
   $('main').hide()
   $('.sign-in-wrapper').show()
-  $('#message').text(`Successfully signed out! Congrats, ${store.user.email}!`)
+  $('.message').text(`Successfully signed out! Congrats, ${store.user.email}!`)
   store.user = null
 }
 
 const onSignOutFailure = () => {
-  $('#message').text(`Failed to sign out!`)
+  $('.message').text(`Failed to sign out!`)
 }
 
 module.exports = {
