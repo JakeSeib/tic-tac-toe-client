@@ -20,8 +20,6 @@ const signIn = userData => {
 }
 
 const changePw = userData => {
-  console.log('data', userData)
-  console.log('token', `${store.user.token}`)
   return $.ajax({
     url: config.apiUrl + '/change-password',
     method: 'PATCH',

@@ -50,12 +50,12 @@ Produce documentation in the form of a **README**, which must:
 
 ### Auth Specifications
 
-1.  [ ] Signup with email, password, and password confirmation.
-1.  [ ] Login with email and password.
-1.  [ ] Logout when logged in.
-1.  [ ] Change password with current and new password.
-1.  [ ] Signup and Signin must only be available to not signed in users.
-1.  [ ] Logout and Change password must only be available to signed in users.
+1.  [x] Signup with email, password, and password confirmation.
+1.  [x] Login with email and password.
+1.  [x] Logout when logged in.
+1.  [x] Change password with current and new password.
+1.  [x] Signup and Signin must only be available to not signed in users.
+1.  [x] Logout and Change password must only be available to signed in users.
 1.  [ ] Give feedback to the user after each action's success or failure.
 1.  [ ] All forms must clear after submit success or failure
 
