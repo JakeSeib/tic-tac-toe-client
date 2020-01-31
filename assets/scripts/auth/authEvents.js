@@ -1,42 +1,43 @@
 'use strict'
 
 const getFormFields = require('../../../lib/get-form-fields')
-const api = require('./api')
-const ui = require('./ui')
+const authApi = require('./authApi')
+const authUi = require('./authUi')
+// const gameApi = require('../game/api')
 
 const onSignUp = event => {
   event.preventDefault()
   // get values from user's input, format for api
   const userData = getFormFields(event.target)
   // send data to api as a post request
-  api.signUp(userData)
+  authApi.signUp(userData)
     // handle if api succeeds
-    .then(ui.onSignUpSuccess)
+    .then(authUi.onSignUpSuccess)
     // handle if api fails
-    .catch(ui.onSignUpFailure)
+    .catch(authUi.onSignUpFailure)
 }
 
 const onSignIn = event => {
   event.preventDefault()
   const userData = getFormFields(event.target)
-  api.signIn(userData)
-    .then(ui.onSignInSuccess)
-    .catch(ui.onSignInFailure)
+  authApi.signIn(userData)
+    .then(authUi.onSignInSuccess)
+    .catch(authUi.onSignInFailure)
 }
 
 const onChangePw = event => {
   event.preventDefault()
   const userData = getFormFields(event.target)
-  api.changePw(userData)
-    .then(ui.onChangePwSuccess)
-    .catch(ui.onChangePwFailure)
+  authApi.changePw(userData)
+    .then(authUi.onChangePwSuccess)
+    .catch(authUi.onChangePwFailure)
 }
 
 const onSignOut = event => {
   event.preventDefault()
-  api.signOut()
-    .then(ui.onSignOutSuccess)
-    .catch(ui.onSignOutFailure)
+  authApi.signOut()
+    .then(authUi.onSignOutSuccess)
+    .catch(authUi.onSignOutFailure)
 }
 
 module.exports = {

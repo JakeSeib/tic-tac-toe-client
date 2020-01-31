@@ -5,7 +5,7 @@ const store = require('../store')
 
 const gameBoardCreate = () => {
   return $.ajax({
-    url: config.apiUrl + '/games',
+    url: `${config.apiUrl}/games`,
     method: 'POST',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -28,6 +28,6 @@ const gameSpaceClick = gameSpaceIndex => {
 }
 
 module.exports = {
-  gameSpaceClick,
-  gameBoardCreate
+  gameBoardCreate,
+  gameSpaceClick
 }
