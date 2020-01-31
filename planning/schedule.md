@@ -28,20 +28,20 @@ Here's a rough sketch of what you should do and in what order:
 
 ### Game Engine
 
-1.  [ ] Create Empty Board in JS
-1.  [ ] Create a way to keep track of the current player
-1.  [ ] Add current player to your JavaScript representation of the board
-    -  [ ] Current player rotates between X and O
-    -  [ ] Can not choose already occupied spots
-1.  [ ] Check Board for Winner
+1.  [x] Create Empty Board in JS
+1.  [x] Create a way to keep track of the current player
+1.  [x] Add current player to your JavaScript representation of the board
+    -  [x] Current player rotates between X and O
+    -  [x] Can not choose already occupied spots
+1.  [x] Check Board for Winner
 
 ### Game UI Round 2
 
-1.  [ ] Update the game engine when the game board is updated
+1.  [x] Update the game engine when the game board is updated
 1.  [ ] Add messaging for the user when the turn changes
-1.  [ ] Add messaging for the user when the user clicks on an invalid space
-1.  [ ] Add messaging for the user when the game is over (win or draw)
-1.  [ ] Do not allow users to add an X or O to any spaces after the game is over
+1.  [x] Add messaging for the user when the user clicks on an invalid space
+1.  [x] Add messaging for the user when the game is over (win or draw)
+1.  [x] Do not allow users to add an X or O to any spaces after the game is over
 
 ### Authentication
 
@@ -54,9 +54,9 @@ Here's a rough sketch of what you should do and in what order:
 
 ### Game API
 
-1.  [ ] Review [jquery-ajax-crud](https://git.generalassemb.ly/ga-wdi-boston/jquery-ajax-crud)
-1.  [ ] Create Game, start new game (curl then web app)
-1.  [ ] Update Game, play the game (curl then web app)
+1.  [x] Review [jquery-ajax-crud](https://git.generalassemb.ly/ga-wdi-boston/jquery-ajax-crud)
+1.  [x] Create Game, start new game (curl then web app)
+1.  [x] Update Game, play the game (curl then web app)
 1.  [ ] Get Games (curl then web app)
 
 ### Final Touches
