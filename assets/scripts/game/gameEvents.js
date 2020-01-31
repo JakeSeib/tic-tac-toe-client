@@ -8,12 +8,12 @@ const store = require('../store')
 const onGameBoardCreate = () => {
   $('.game-space').on('click', onGameSpaceClick)
   store.currentPlayerIndex = 0
-  gameApi.gameBoardCreate()
-    .then(gameUi.onGameBoardCreateSuccess)
-    .catch(gameUi.onGameBoardCreateFailure)
   gameApi.gameIndex()
     .then(gameUi.onGetAllGamesSuccess)
     .catch(gameUi.onGetAllGamesFailure)
+  gameApi.gameBoardCreate()
+    .then(gameUi.onGameBoardCreateSuccess)
+    .catch(gameUi.onGameBoardCreateFailure)
 }
 
 const onGameSpaceClick = event => {
