@@ -6,6 +6,8 @@ const onGameBoardCreateSuccess = response => {
   store.user.game = response.game
   $('.main-message').text('')
   $('.game-space').text('_')
+  $('.current-turn-container').text('Current turn: ' +
+  store.players[store.currentPlayerIndex].toUpperCase())
 }
 
 const onGameBoardCreateFailure = response => {
@@ -28,6 +30,8 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
     }
   } else {
     $('.main-message').text('')
+    $('.current-turn-container').text('Current turn: ' +
+    store.players[store.currentPlayerIndex].toUpperCase())
   }
 }
 
