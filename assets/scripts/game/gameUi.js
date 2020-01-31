@@ -10,11 +10,11 @@ const onGameBoardCreateSuccess = response => {
   store.players[store.currentPlayerIndex].toUpperCase())
 }
 
-const onGameBoardCreateFailure = response => {
+const onGameBoardCreateFailure = () => {
   $('.main-message').text(`Failed to create new game!`)
 }
 
-const onGameSpaceClickFailure = response => {
+const onGameSpaceClickFailure = () => {
   $('.main-message').text(`Only click empty spaces!`)
 }
 
@@ -35,9 +35,20 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
   }
 }
 
+const onGetAllGamesSuccess = response => {
+  const totalGames = response.games.length
+  $('.game-history').text(`Total games played: ${totalGames}`)
+}
+
+const onGetAllGamesFailure = () => {
+  $('.game-history').text(`Failed to get game history`)
+}
+
 module.exports = {
   onGameBoardCreateSuccess,
   onGameBoardCreateFailure,
   onGameSpaceClickSuccess,
-  onGameSpaceClickFailure
+  onGameSpaceClickFailure,
+  onGetAllGamesSuccess,
+  onGetAllGamesFailure
 }

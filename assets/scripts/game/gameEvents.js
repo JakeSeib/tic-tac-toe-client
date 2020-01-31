@@ -11,6 +11,9 @@ const onGameBoardCreate = () => {
   gameApi.gameBoardCreate()
     .then(gameUi.onGameBoardCreateSuccess)
     .catch(gameUi.onGameBoardCreateFailure)
+  gameApi.gameIndex()
+    .then(gameUi.onGetAllGamesSuccess)
+    .catch(gameUi.onGetAllGamesFailure)
 }
 
 const onGameSpaceClick = event => {
