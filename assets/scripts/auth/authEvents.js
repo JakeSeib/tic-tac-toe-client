@@ -3,7 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const authApi = require('./authApi')
 const authUi = require('./authUi')
-// const gameApi = require('../game/api')
+const gameApi = require('../game/gameApi')
 
 const onSignUp = event => {
   event.preventDefault()
