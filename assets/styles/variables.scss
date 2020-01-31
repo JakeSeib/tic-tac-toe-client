@@ -1,2 +1,9 @@
 $default-border-color: #000;
+$default-font-color: #000;
+$empy-space-color: #fff;
 $default-font-family: 'Roboto', sans-serif;
+
+:export {
+  defaultfontcolor: $default-font-color;
+  emptyspacecolor: $empy-space-color;
+}
