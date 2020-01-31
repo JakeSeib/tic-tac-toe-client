@@ -1,12 +1,6 @@
 'use strict'
 
-// const store = require('../store')
-// testing store
-const store = {
-  players: ['x', 'o']
-}
-
-const exampleGameBoard = ["","","o","x","","o","x","o","o"]
+const store = require('../store')
 
 const convertToRows = gameBoard => {
   // Given a game board represented as an array of length 9 with elements 'x',
@@ -61,8 +55,6 @@ const isGameOver = gameBoard => {
     return 'draw'
   }
 }
-
-console.log(isGameOver(exampleGameBoard))
 
 module.exports = {
   isGameOver

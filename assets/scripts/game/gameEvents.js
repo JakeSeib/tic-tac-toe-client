@@ -6,6 +6,8 @@ const gameBoard = require('./gameBoard')
 const store = require('../store')
 
 const onGameBoardCreate = () => {
+  $('.game-space').on('click', onGameSpaceClick)
+  store.currentPlayerIndex = 0
   gameApi.gameBoardCreate()
     .then(gameUi.onGameBoardCreateSuccess)
     .catch(gameUi.onGameBoardCreateFailure)

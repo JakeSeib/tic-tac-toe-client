@@ -29,7 +29,6 @@ const onSignUpFailure = response => {
 const onSignInSuccess = response => {
   $('main').show()
   $('.sign-in-wrapper').hide()
-  $('.message').text(`Successfully signed in! Congrats, ${response.user.email}!`)
   // $('.sign-in-form').trigger('reset')
   store.user = response.user
 }
