@@ -4,8 +4,9 @@ const gameApi = require('./gameApi')
 const gameUi = require('./gameUi')
 const store = require('../store')
 
-const onGameBoardReset = () => {
+const onGameBoardCreate = () => {
   gameApi.gameBoardCreate()
+    .then(gameUi.onGameBoardCreateSuccess)
 }
 
 const onGameSpaceClick = event => {
@@ -18,6 +19,6 @@ const onGameSpaceClick = event => {
 }
 
 module.exports = {
-  onGameBoardReset,
+  onGameBoardCreate,
   onGameSpaceClick
 }
