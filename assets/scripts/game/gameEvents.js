@@ -7,6 +7,7 @@ const store = require('../store')
 const onGameBoardCreate = () => {
   gameApi.gameBoardCreate()
     .then(gameUi.onGameBoardCreateSuccess)
+    .catch(gameUi.onGameBoardCreateFailure)
 }
 
 const onGameSpaceClick = event => {
@@ -14,7 +15,8 @@ const onGameSpaceClick = event => {
   const gameSpaceDiv = $(`[data-cell-index="${gameSpaceIndex}"]`, '.game-board-container')
   if (!store.players.includes(gameSpaceDiv.text())) {
     gameApi.gameSpaceClick(gameSpaceIndex)
-    gameUi.onGameSpaceClickSuccess(gameSpaceDiv)
+      .then(response => gameUi.onGameSpaceClickSuccess(gameSpaceDiv, response))
+      .catch(gameUi.onGameSpaceClickFailure)
   }
 }
 

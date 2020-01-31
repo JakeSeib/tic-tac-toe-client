@@ -15,16 +15,24 @@ const gameBoardCreate = () => {
 }
 
 const gameSpaceClick = gameSpaceIndex => {
-  // api call requires game id & game delta
+  const gameId = store.user.game.id
 
-  // return $.ajax({
-  //   url: config.apiUrl + '/change-password',
-  //   method: 'PATCH',
-  //   headers: {
-  //     Authorization: `Token token=${store.user.token}`
-  //   },
-  //   data: userData
-  // })
+  return $.ajax({
+    url: `${config.apiUrl}/games/${gameId}`,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      "game": {
+        "cell": {
+          "index": gameSpaceIndex,
+          "value": store.players[store.currentPlayerIndex]
+        },
+        "over": false
+      }
+    }
+  })
 }
 
 module.exports = {
