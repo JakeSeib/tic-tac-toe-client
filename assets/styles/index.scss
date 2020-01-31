@@ -2,17 +2,30 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import 'variables';
 
-* {
-  box-sizing: border-box;
-}
-
 main {
   font-family: $default-font-family;
+}
+
+h1 {
+  padding: 20px;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 5px;
 }
 
 .sign-in-wrapper {
   border: 1px solid $default-border-color;
   font-family: $default-font-family;
+  padding: 10px;
+}
+
+.signed-in-message {
+  padding: 10px;
 }
 
 .main-nav {
@@ -21,5 +34,54 @@ main {
 
 .game-space {
   border: 1px solid $default-border-color;
-  font-size: 30px;
+  color: $empy-space-color;
+  font-size: 80px;
+}
+
+[data-cell-index='0'] {
+  border-left-color: $empy-space-color;
+  border-top-color: $empy-space-color;
+}
+
+[data-cell-index='1'] {
+  border-top-color: $empy-space-color;
+}
+
+[data-cell-index='2'] {
+  border-right-color: $empy-space-color;
+  border-top-color: $empy-space-color;
+}
+
+[data-cell-index='3'] {
+  border-left-color: $empy-space-color;
+}
+
+[data-cell-index='5'] {
+  border-right-color: $empy-space-color;
+}
+
+[data-cell-index='6'] {
+  border-bottom-color: $empy-space-color;
+  border-left-color: $empy-space-color;
+}
+
+[data-cell-index='7'] {
+  border-bottom-color: $empy-space-color;
+}
+
+[data-cell-index='8'] {
+  border-bottom-color: $empy-space-color;
+  border-right-color: $empy-space-color;
+}
+
+.current-turn-container {
+  padding: 10px;
+}
+
+.game-history {
+  padding: 10px;
+}
+
+.sign-out-form {
+  margin-top: 10px;
 }

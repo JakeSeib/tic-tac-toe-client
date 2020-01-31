@@ -1,11 +1,14 @@
 'use strict'
 
 const store = require('../store')
+const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
   store.user.game = response.game
   $('.main-message').text('')
-  $('.game-space').text('_')
+  $('.game-space')
+    .text('_')
+    .css('color', styleVariables.emptyspacecolor)
   $('.current-turn-container').text('Current turn: ' +
   store.players[store.currentPlayerIndex].toUpperCase())
 }
@@ -19,7 +22,8 @@ const onGameSpaceClickFailure = () => {
 }
 
 const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
-  gameSpaceDiv.text(store.players[store.currentPlayerIndex])
+  gameSpaceDiv.text(store.players[store.currentPlayerIndex].toUpperCase())
+    .css('color', styleVariables.defaultfontcolor)
   store.currentPlayerIndex = Math.abs(store.currentPlayerIndex - 1)
   if (winner) {
     $('.game-space').off('click')
