@@ -1,6 +1,5 @@
 'use strict'
 
-const gameBoard = require('./gameBoard')
 const config = require('../config')
 const store = require('../store')
 
@@ -15,9 +14,8 @@ const gameBoardCreate = () => {
   })
 }
 
-const gameSpaceClick = gameSpaceIndex => {
+const gameSpaceClick = (gameSpaceIndex, winner) => {
   const gameId = store.user.game.id
-  console.log('current game cells', store.user.game.cells)
 
   return $.ajax({
     url: `${config.apiUrl}/games/${gameId}`,
@@ -31,7 +29,7 @@ const gameSpaceClick = gameSpaceIndex => {
           'index': gameSpaceIndex,
           'value': store.players[store.currentPlayerIndex]
         },
-        'over': Boolean(gameBoard.isGameOver(store.user.game.cells))
+        'over': Boolean(winner)
       }
     }
   })

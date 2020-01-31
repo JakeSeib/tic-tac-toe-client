@@ -10,13 +10,16 @@ const onGameBoardCreateFailure = response => {
   $('.message').text(`Failed to create new game!`)
 }
 
-const onGameSpaceClickSuccess = (gameSpaceDiv, response) => {
-  gameSpaceDiv.text(store.players[store.currentPlayerIndex])
-  store.currentPlayerIndex = Math.abs(store.currentPlayerIndex - 1)
+const onGameSpaceClickFailure = response => {
+  $('.message').text(`Only click empty spaces!`)
 }
 
-const onGameSpaceClickFailure = response => {
-  $('.message').text(`Failed to update game!`)
+const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
+  gameSpaceDiv.text(store.players[store.currentPlayerIndex])
+  store.currentPlayerIndex = Math.abs(store.currentPlayerIndex - 1)
+  if (winner) {
+    $('.game-space').off('click')
+  }
 }
 
 module.exports = {
