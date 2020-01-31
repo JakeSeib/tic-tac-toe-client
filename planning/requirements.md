@@ -8,7 +8,7 @@ In order to get a satisfactory score, by the time you present your project, you
 Be deployed online, where the rest of the world can access it.
 
 1.  [x] Deploy on your public Github page, not Github Enterprise.
-1.  [ ] Present a working browser game, built by you, hosted and deployed on GitHub Pages.
+1.  [x] Present a working browser game, built by you, hosted and deployed on GitHub Pages.
 
 ### Version Control
 
@@ -45,7 +45,7 @@ Produce documentation in the form of a **README**, which must:
 
 1.  [x] Create new games on the server. (CREATE)
 1.  [x] Update a game by storing new moves. (UPDATE)
-1.  [ ] Visually display the results of retrieving game statistics, such as total games won by a user. (READ)
+1.  [x] Visually display the results of retrieving game statistics, such as total games won by a user. (READ)
 1.  [x] Give feedback to the user after each action.
 
 ### Auth Specifications

@@ -50,14 +50,14 @@ Here's a rough sketch of what you should do and in what order:
 1.  [x] Sign In (curl then web app)
 1.  [x] Change Password (curl then web app)
 1.  [x] Sign Out (curl then web page)
-1.  [ ] All API calls have success or failure messages
+1.  [x] All API calls have success or failure messages
 
 ### Game API
 
 1.  [x] Review [jquery-ajax-crud](https://git.generalassemb.ly/ga-wdi-boston/jquery-ajax-crud)
 1.  [x] Create Game, start new game (curl then web app)
 1.  [x] Update Game, play the game (curl then web app)
-1.  [ ] Get Games (curl then web app)
+1.  [x] Get Games (curl then web app)
 
 ### Final Touches
 
