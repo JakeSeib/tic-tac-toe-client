@@ -14,6 +14,7 @@ const onGameSpaceClick = event => {
   const gameSpaceIndex = event.target.getAttribute('data-cell-index')
   const gameSpaceDiv = $(`[data-cell-index="${gameSpaceIndex}"]`, '.game-board-container')
   if (!store.players.includes(gameSpaceDiv.text())) {
+    store.user.game.cells[gameSpaceIndex] = store.players[store.currentPlayerIndex]
     gameApi.gameSpaceClick(gameSpaceIndex)
       .then(response => gameUi.onGameSpaceClickSuccess(gameSpaceDiv, response))
       .catch(gameUi.onGameSpaceClickFailure)
