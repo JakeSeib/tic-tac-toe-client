@@ -4,16 +4,16 @@ const store = require('../store')
 
 const onGameBoardCreateSuccess = response => {
   store.user.game = response.game
-  $('.message').text('')
+  $('.main-message').text('')
   $('.game-space').text('_')
 }
 
 const onGameBoardCreateFailure = response => {
-  $('.message').text(`Failed to create new game!`)
+  $('.main-message').text(`Failed to create new game!`)
 }
 
 const onGameSpaceClickFailure = response => {
-  $('.message').text(`Only click empty spaces!`)
+  $('.main-message').text(`Only click empty spaces!`)
 }
 
 const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
@@ -22,12 +22,12 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, winner, response) => {
   if (winner) {
     $('.game-space').off('click')
     if (store.players.includes(winner)) {
-      $('.message').text(winner.toUpperCase() + 'wins!')
+      $('.main-message').text(winner.toUpperCase() + ' wins!')
     } else {
-      $('.message').text('It\'s a draw!')
+      $('.main-message').text('It\'s a draw!')
     }
   } else {
-    $('.message').text('')
+    $('.main-message').text('')
   }
 }
 

@@ -1,22 +1,16 @@
 'use strict'
 
-// REMEMBER TO UNCOMMENT FORM RESETTING
-
 const store = require('../store')
 
 const onSignUpSuccess = response => {
-  // If tweaking functionality to store token and sign in upon success,
-  // uncomment showing and hiding
-
-  // $('main').show()
-  // $('.sign-in-wrapper').hide()
-  $('.message').text(`Successfully signed up! Congrats, ${response.user.email}!`)
-  // $('.sign-up-form').trigger('reset')
+  $('.sign-up-message').text(`Successfully signed up as ${response.user.email}`)
+  $('.sign-up-form').trigger('reset')
 }
 
 const onSignUpFailure = response => {
-  $('.message').text(`Failed to sign up!`)
-  // $('.sign-up-form').trigger('reset')
+  $('.sign-up-message').text(`Failed to sign up. Ensure that password and \
+    password confirmation are the same, or try a different email address.`)
+  $('.sign-up-form').trigger('reset')
 
   // clear the message
   // setTimeout(() => {
@@ -27,25 +21,26 @@ const onSignUpFailure = response => {
 }
 
 const onSignInSuccess = response => {
+  $('.signed-in-message').text(`You are signed in as ${response.user.email}`)
   $('main').show()
   $('.sign-in-wrapper').hide()
-  // $('.sign-in-form').trigger('reset')
+  $('.sign-in-form').trigger('reset')
   store.user = response.user
 }
 
 const onSignInFailure = response => {
-  $('.message').text(`Failed to sign in!`)
-  // $('.sign-in-form').trigger('reset')
+  $('.sign-up-message').text(`Failed to sign in. Ensure that your email and password are correct.`)
+  $('.sign-in-form').trigger('reset')
 }
 
 const onChangePwSuccess = response => {
   $('.message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
-  // $('.change-pw-form').trigger('reset')
+  $('.change-pw-form').trigger('reset')
 }
 
 const onChangePwFailure = response => {
-  $('.message').text(`Failed to change password!`)
-  // $('.change-pw-form').trigger('reset')
+  $('.message').text(`Failed to change password. Ensure that your current password is correct.`)
+  $('.change-pw-form').trigger('reset')
 }
 
 const onSignOutSuccess = () => {
