@@ -1,21 +1,15 @@
 'use strict'
 
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example')
 const authEvents = require('./auth/authEvents')
 const gameEvents = require('./game/gameEvents')
 const store = require('./store')
 
-// use require without a reference to ensure a file is bundled
-// require('./example')
-
 $(() => {
+  store.players = ['x', 'o']
   $('main').hide()
   $('.sign-up-form').on('submit', authEvents.onSignUp)
   $('.sign-in-form').on('submit', authEvents.onSignIn)
   $('.change-pw-form').on('submit', authEvents.onChangePw)
   $('.sign-out-form').on('submit', authEvents.onSignOut)
-  $('.game-space').on('click', gameEvents.onGameSpaceClick)
-  store.players = ['x', 'o']
-  store.currentPlayerIndex = 0
+  $('.new-game-btn').on('click', gameEvents.onGameBoardCreate)
 })
