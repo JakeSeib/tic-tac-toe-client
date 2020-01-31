@@ -42,6 +42,24 @@ const isGameOver = gameBoard => {
       return col[0]
     }
   }
+
+  // check for diagonal win (indices 0, 4, and 8 or 2, 4, and 6)
+  const diag1 = [gameBoard[0], gameBoard[4], gameBoard[8]]
+  const diag2 = [gameBoard[2], gameBoard[4], gameBoard[6]]
+  if (diag1.every(element => element === diag1[0]) &&
+  store.players.includes(diag1[0])) {
+    return diag1[0]
+  } else if (diag2.every(element => element === diag2[0]) &&
+  store.players.includes(diag2[0])) {
+    return diag2[0]
+  }
+
+  // check if the game board has any free spaces left
+  if (gameBoard.some(element => element === '')) {
+    return false
+  } else {
+    return 'draw'
+  }
 }
 
 console.log(isGameOver(exampleGameBoard))
