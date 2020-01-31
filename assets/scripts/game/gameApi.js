@@ -24,12 +24,12 @@ const gameSpaceClick = gameSpaceIndex => {
       Authorization: `Token token=${store.user.token}`
     },
     data: {
-      "game": {
-        "cell": {
-          "index": gameSpaceIndex,
-          "value": store.players[store.currentPlayerIndex]
+      'game': {
+        'cell': {
+          'index': gameSpaceIndex,
+          'value': store.players[store.currentPlayerIndex]
         },
-        "over": false
+        'over': false
       }
     }
   })
