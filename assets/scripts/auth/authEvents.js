@@ -5,14 +5,32 @@ const authApi = require('./authApi')
 const authUi = require('./authUi')
 const gameEvents = require('../game/gameEvents')
 
+const signInWithData = userData => {
+  // userData has the format that getFormFields outputs from a form with email
+  // and password
+  authApi.signIn(userData)
+    .then(authUi.onSignInSuccess)
+    .then(gameEvents.onGameBoardCreate)
+    .catch(authUi.onSignInFailure)
+}
+
 const onSignUp = event => {
   event.preventDefault()
   // get values from user's input, format for api
   const userData = getFormFields(event.target)
+  // format for sign-in api call
+  const signInUserData = {
+    credentials: {
+      email: userData.credentials.email,
+      password: userData.credentials.password
+    }
+  }
   // send data to api as a post request
   authApi.signUp(userData)
     // handle if api succeeds
     .then(authUi.onSignUpSuccess)
+    // automatically log the new user in
+    .then(response => signInWithData(signInUserData))
     // handle if api fails
     .catch(authUi.onSignUpFailure)
 }
@@ -20,10 +38,7 @@ const onSignUp = event => {
 const onSignIn = event => {
   event.preventDefault()
   const userData = getFormFields(event.target)
-  authApi.signIn(userData)
-    .then(authUi.onSignInSuccess)
-    .then(gameEvents.onGameBoardCreate)
-    .catch(authUi.onSignInFailure)
+  signInWithData(userData)
 }
 
 const onChangePw = event => {
