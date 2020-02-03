@@ -21,11 +21,18 @@ button {
 .sign-in-wrapper {
   border: 1px solid $default-border-color;
   font-family: $default-font-family;
+  margin-top: 10%;
   padding: 10px;
 }
 
 .signed-in-message {
   padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-wrapper {
+    height: 100vh;
+  }
 }
 
 .main-nav {

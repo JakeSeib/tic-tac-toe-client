@@ -48,25 +48,27 @@
       <main class='container-fluid'>
         <div class='row'>
           <nav class='main-nav col-md-3'>
-            <p class='message signed-in-message col-12 text-center'></p>
-            <form class='change-pw-form'>
-              <fieldset>
-                <legend>Change Password</legend>
-                <label>Current Password
-                  <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
-                </label>
-                <label>New Password
-                  <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
-                </label>
-                <input type='submit' value='Change password'>
-              </fieldset>
-            </form>
+            <div class='nav-wrapper'>
+              <p class='message signed-in-message col-12 text-center'></p>
+              <form class='change-pw-form'>
+                <fieldset>
+                  <legend>Change Password</legend>
+                  <label>Current Password
+                    <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
+                  </label>
+                  <label>New Password
+                    <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
+                  </label>
+                  <input type='submit' value='Change password'>
+                </fieldset>
+              </form>
 
-            <form class='sign-out-form'>
-              <fieldset>
-                <input type='submit' value='Log Out'>
-              </fieldset>
-            </form>
+              <form class='sign-out-form'>
+                <fieldset>
+                  <input type='submit' value='Log Out'>
+                </fieldset>
+              </form>
+            </div>
           </nav>
 
           <div class='main-content col-md-9'>
