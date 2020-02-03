@@ -26,7 +26,7 @@ Produce documentation in the form of a **README**, which must:
 1.  [x] Complete the repository `Description` field and `Website` field with a meaningful sentence description of the application and link to the live URL
 ![github image](https://git.generalassemb.ly/storage/user/3667/files/beae41ae-aaaa-11e7-8867-63958d376a0b)
 1.  [x] List technologies used
-1.  [ ] Document your planning and tell a story about your development process and problem-solving strategy.
+1.  [x] Document your planning and tell a story about your development process and problem-solving strategy.
 1.  [x] List unsolved problems which would be fixed in future iterations.
 1.  [x] Link to wireframes and user stories.
 
@@ -62,15 +62,15 @@ Produce documentation in the form of a **README**, which must:
 ### DO NOT!!
 
 Your app **must not**:
-1.  [ ] Delete your repository at any time or start over.
-1.  [ ] Rely on refreshing the page for any functionality.
-1.  [ ] Have any user-facing bugs.
-    -  [ ] Display non-functional buttons, nor buttons that do not successfully complete a task.
-    -  [ ] Show actions at inappropriate times (example: sign out button when not signed in).
-    -  [ ] Forms not clearing at appropriate times (example: sign up form not clearing after success).
-1.  [ ] Allow the same game to be played after a player has won or tied.
-1.  [ ] Allow players to move in the same square more than once.
-1.  [ ] Change players when an invalid move is made.
-1.  [ ] Use alerts for anything.
-1.  [ ] Display errors or warnings in the console.
-1.  [ ] Display debugging messages in the console.
+1.  [x] Delete your repository at any time or start over.
+1.  [x] Rely on refreshing the page for any functionality.
+1.  [x] Have any user-facing bugs.
+    -  [x] Display non-functional buttons, nor buttons that do not successfully complete a task.
+    -  [x] Show actions at inappropriate times (example: sign out button when not signed in).
+    -  [x] Forms not clearing at appropriate times (example: sign up form not clearing after success).
+1.  [x] Allow the same game to be played after a player has won or tied.
+1.  [x] Allow players to move in the same square more than once.
+1.  [x] Change players when an invalid move is made.
+1.  [x] Use alerts for anything.
+1.  [x] Display errors or warnings in the console.
+1.  [x] Display debugging messages in the console.

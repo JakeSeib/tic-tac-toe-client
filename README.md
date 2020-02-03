@@ -21,6 +21,11 @@ At any time, the new game button can be pressed to reset the board and begin a n
 ### Planning
 
 Roughly, the route to having a working MVP was plotted as follows:
+- Handle user authentication
+- Handle game API
+- Create game board & engine
+
+Broken out into smaller steps, this became:
 - Write curl scripts for all needed API communication
 - Implement user auth events on the front-end
 - Create basic page layout and flow (i.e. hide sign up/in options when already signed in, create game board with basic click handlers)
@@ -29,6 +34,8 @@ Roughly, the route to having a working MVP was plotted as follows:
   - A "referee" to determine if a game is over, and if so who won
   - A way to cycle the current player between X and O
 - Implement remaining requirements (form resetting, game board reset button, user messaging, showing game history)
+
+I focused my plan around grouping together all the game logic in my workflow- creating the game board and testing its funcionality vis-a-vis both the API and the game engine. The different components of making the game function were far more interlinked than other components, and to some degree their full implementation also depended upon user auth already being completed (for example, automatically creating a new game upon login required an event handler for login to hook game creation up to).
 
 See also [the wireframes](/planning/wireframes.md) and [user stories](/planning/user-stories.md) created for this project as part of planning.
 
@@ -42,5 +49,3 @@ Being a project completed in four days, there is naturally much room for improve
 - Rapidly playing through games and beginning new ones can cause the number of completed games shown on the screen to fail to update (the number on the server remains correct).
 - Simply seeing the total number of completed games for a given user is not particularly interesting, and this could be broken out into a more informative breakdown (X wins, O wins, draws, uncompleted). Additionally, an option could be given to go back to uncompleted games and finish them.
 - Other play options could be incorporated: playing against someone on another device, or playing against a computer opponent.
-
-###
