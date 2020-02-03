@@ -14,7 +14,7 @@ const gameBoardCreate = () => {
   })
 }
 
-const gameSpaceClick = (gameSpaceIndex, winner) => {
+const gameSpaceClick = (gameSpaceIndex, currentPlayer, winner) => {
   const gameId = store.user.game.id
 
   return $.ajax({
@@ -27,7 +27,7 @@ const gameSpaceClick = (gameSpaceIndex, winner) => {
       'game': {
         'cell': {
           'index': gameSpaceIndex,
-          'value': store.players[store.currentPlayerIndex]
+          'value': currentPlayer
         },
         'over': Boolean(winner)
       }
@@ -36,12 +36,12 @@ const gameSpaceClick = (gameSpaceIndex, winner) => {
 }
 
 const gameIndex = (over) => {
-  let overQuery = ''
-  if (over !== undefined) {
-    overQuery = `?over=${over}`
-  }
   // Get all games associated with a user. Optional over parameter can be either
   // 'true' or 'false' to restrict results to games with matching over property
+  let overQuery = ''
+  if ([true, false].includes(over)) {
+    overQuery = `?over=${over}`
+  }
   return $.ajax({
     url: `${config.apiUrl}/games${overQuery}`,
     method: 'GET',
