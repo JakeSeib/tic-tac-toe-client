@@ -43,12 +43,15 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
 }
 
 const onGetAllGamesSuccess = response => {
+  console.log(response.games)
   const allGameResults = gameBoard.countGameResults(response.games)
   Object.keys(allGameResults).forEach(key => {
     $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
   })
   if (allGameResults['false'] > 0) {
-    // todo: prompt to continue an incomplete game
+    // todo: prompt to continue an incomplete game. If only getting and
+    // processing index from the server once, whatever is put in here will need
+    // to be repeated elsewhere, i.e. whenever creating a new game
   }
 }
 

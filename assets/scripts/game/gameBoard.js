@@ -74,7 +74,11 @@ const countGameResults = gameArray => {
   gameResults[store.players[0]] = 0
   gameResults[store.players[1]] = 0
   gameArray.forEach(game => {
-    gameResults[isGameOver(game.cells)] += 1
+    if (!game.over) {
+      gameResults['false'] += 1
+    } else {
+      gameResults[isGameOver(game.cells)] += 1
+    }
   })
   return gameResults
 }

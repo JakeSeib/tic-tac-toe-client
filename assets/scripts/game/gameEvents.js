@@ -9,14 +9,10 @@ const onGameBoardCreate = () => {
   $('.game-space').on('click', onGameSpaceClick)
   // Get list of previous games before creating the new one to avoid counting
   // the newly created (uncompleted) game in the UI
-  gameApi.gameIndex()
-    .then(gameUi.onGetAllGamesSuccess)
-    .then(response => {
-      gameApi.gameBoardCreate()
-        .then(gameUi.onGameBoardCreateSuccess)
-        .catch(gameUi.onGameBoardCreateFailure)
-    })
-    .catch(gameUi.onGetAllGamesFailure)
+  gameApi.gameBoardCreate()
+    .then(gameUi.onGameBoardCreateSuccess)
+    // todo: add result of previous game to game history table
+    .catch(gameUi.onGameBoardCreateFailure)
 }
 
 const onGameSpaceClick = event => {

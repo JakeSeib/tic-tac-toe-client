@@ -4,12 +4,19 @@ const getFormFields = require('../../../lib/get-form-fields')
 const authApi = require('./authApi')
 const authUi = require('./authUi')
 const gameEvents = require('../game/gameEvents')
+const gameApi = require('../game/gameApi')
+const gameUi = require('../game/gameUi')
 
 const signInWithData = userData => {
   // userData has the format that getFormFields outputs from a form with email
   // and password
   authApi.signIn(userData)
     .then(authUi.onSignInSuccess)
+    .then(response => {
+      gameApi.gameIndex()
+        .then(gameUi.onGetAllGamesSuccess)
+        .catch(gameUi.onGetAllGamesFailure)
+    })
     .then(gameEvents.onGameBoardCreate)
     .catch(authUi.onSignInFailure)
 }
