@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const gameBoard = require('./gameBoard')
 const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
@@ -42,8 +43,10 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
 }
 
 const onGetAllGamesSuccess = response => {
-  const totalGames = response.games.length
-  $('.game-history').text(`Total games played: ${totalGames}`)
+  const allGameResults = gameBoard.countGameResults(response.games)
+  Object.keys(allGameResults).forEach(key => {
+    $(`.history-${key}`).text(allGameResults[key])
+  })
 }
 
 const onGetAllGamesFailure = () => {
