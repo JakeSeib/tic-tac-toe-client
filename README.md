@@ -37,6 +37,7 @@ See also [the wireframes](/planning/wireframes.md) and [user stories](/planning/
 Being a project completed in four days, there is naturally much room for improvement.
 
 - For starters, the layout and styling could do with a serious overhaul with the help of a designer, rather than continuing to be made up entirely of plain-looking boxes and paragraph elements.
+  - Having square spaces on the game board would make it look more like a traditional game board. This could be accomplished by using images to denote a square filling instead of text.
 - Error messages for the user do not always contain relevant information on what caused the error. For example, the same stock message is displayed whenever signing up fails, though it would be possible to check whether password and password confirmation match or not and inform the user of the specific problem if they do not.
 - Rapidly playing through games and beginning new ones can cause the number of completed games shown on the screen to fail to update (the number on the server remains correct).
 - Simply seeing the total number of completed games for a given user is not particularly interesting, and this could be broken out into a more informative breakdown (X wins, O wins, draws, uncompleted). Additionally, an option could be given to go back to uncompleted games and finish them.
