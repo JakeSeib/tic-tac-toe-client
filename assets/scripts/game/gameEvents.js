@@ -11,10 +11,12 @@ const onGameBoardCreate = () => {
   // the newly created (uncompleted) game in the UI
   gameApi.gameIndex()
     .then(gameUi.onGetAllGamesSuccess)
+    .then(response => {
+      gameApi.gameBoardCreate()
+        .then(gameUi.onGameBoardCreateSuccess)
+        .catch(gameUi.onGameBoardCreateFailure)
+    })
     .catch(gameUi.onGetAllGamesFailure)
-  gameApi.gameBoardCreate()
-    .then(gameUi.onGameBoardCreateSuccess)
-    .catch(gameUi.onGameBoardCreateFailure)
 }
 
 const onGameSpaceClick = event => {
