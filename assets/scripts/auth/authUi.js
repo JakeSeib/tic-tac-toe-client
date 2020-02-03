@@ -3,7 +3,6 @@
 const store = require('../store')
 
 const onSignUpSuccess = response => {
-  $('.sign-up-message').text(`Successfully signed up as ${response.user.email}`)
   $('.sign-up-form').trigger('reset')
 }
 
@@ -34,24 +33,24 @@ const onSignInFailure = () => {
 }
 
 const onChangePwSuccess = () => {
-  $('.message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
+  $('.auth-message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
   $('.change-pw-form').trigger('reset')
 }
 
 const onChangePwFailure = () => {
-  $('.message').text(`Failed to change password. Ensure that your current password is correct.`)
+  $('.auth-message').text(`Failed to change password. Ensure that your current password is correct.`)
   $('.change-pw-form').trigger('reset')
 }
 
 const onSignOutSuccess = () => {
   $('main').hide()
   $('.sign-in-wrapper').show()
-  $('.message').text(`Successfully signed out! Congrats, ${store.user.email}!`)
+  $('.game-history').text('')
   store.user = null
 }
 
 const onSignOutFailure = () => {
-  $('.message').text(`Failed to sign out!`)
+  $('auth-message').text(`Failed to sign out!`)
 }
 
 module.exports = {

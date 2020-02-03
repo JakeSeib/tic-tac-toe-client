@@ -45,8 +45,11 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
 const onGetAllGamesSuccess = response => {
   const allGameResults = gameBoard.countGameResults(response.games)
   Object.keys(allGameResults).forEach(key => {
-    $(`.history-${key}`).text(allGameResults[key])
+    $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
   })
+  if (allGameResults['false'] > 0) {
+    // todo: prompt to continue an incomplete game
+  }
 }
 
 const onGetAllGamesFailure = () => {
