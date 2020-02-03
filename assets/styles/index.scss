@@ -11,7 +11,7 @@ h1 {
 }
 
 p {
-  margin: 0;
+  margin: 0 auto;
 }
 
 button {
@@ -40,45 +40,31 @@ button {
 }
 
 .game-space {
-  border: 1px solid $default-border-color;
+  border-bottom: 2px solid $default-border-color;
+  border-right: 2px solid $default-border-color;
   color: $empy-space-color;
-  font-size: 80px;
-}
-
-[data-cell-index='0'] {
-  border-left-color: $empy-space-color;
-  border-top-color: $empy-space-color;
-}
-
-[data-cell-index='1'] {
-  border-top-color: $empy-space-color;
+  font-size: 15vh;
 }
 
 [data-cell-index='2'] {
-  border-right-color: $empy-space-color;
-  border-top-color: $empy-space-color;
-}
-
-[data-cell-index='3'] {
-  border-left-color: $empy-space-color;
+  border-right: 0;
 }
 
 [data-cell-index='5'] {
-  border-right-color: $empy-space-color;
+  border-right: 0;
 }
 
 [data-cell-index='6'] {
-  border-bottom-color: $empy-space-color;
-  border-left-color: $empy-space-color;
+  border-bottom: 0;
 }
 
 [data-cell-index='7'] {
-  border-bottom-color: $empy-space-color;
+  border-bottom: 0;
 }
 
 [data-cell-index='8'] {
-  border-bottom-color: $empy-space-color;
-  border-right-color: $empy-space-color;
+  border-bottom: 0;
+  border-right: 0;
 }
 
 .current-turn-container {
