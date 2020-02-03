@@ -13,11 +13,18 @@ const convertToRows = gameBoard => {
 }
 
 const isGameOver = gameBoard => {
-  const gameBoardRows = convertToRows(gameBoard)
   // Given a game board represented as an array of 3 arrays, with each nested
   // array representing a horizontal row on the game board, return 'x' if 'x' is
   // the winner, 'o' if 'o' is the winner, 'draw' if the game is over but has no
   // winner, and false if the game is not over
+
+  // Arbitrarily checks for horizontal wins first, then vertical, then diagonal.
+  // Loops over rows, columns, and diagonals arbitrarily. Does not check for
+  // an illegal game board- either too many inputs from one player (i.e. a
+  // board with 5 'x's and 2 'o's) or a board with multiple victory
+  // conditions. It is entirely up to the rest of the project to prevent a
+  // game from ever being stored this way in the API's database.
+  const gameBoardRows = convertToRows(gameBoard)
 
   // Check for horizontal win
   for (let i = 0; i < gameBoardRows.length; i++) {

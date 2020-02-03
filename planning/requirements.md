@@ -22,13 +22,13 @@ of the project week.
 
 Produce documentation in the form of a **README**, which must:
 
-1.  [ ] Pin your repository on GitHub as a Popular Repository
-1.  [ ] Complete the repository `Description` field and `Website` field with a meaningful sentence description of the application and link to the live URL
+1.  [x] Pin your repository on GitHub as a Popular Repository
+1.  [x] Complete the repository `Description` field and `Website` field with a meaningful sentence description of the application and link to the live URL
 ![github image](https://git.generalassemb.ly/storage/user/3667/files/beae41ae-aaaa-11e7-8867-63958d376a0b)
-1.  [ ] List technologies used
+1.  [x] List technologies used
 1.  [ ] Document your planning and tell a story about your development process and problem-solving strategy.
-1.  [ ] List unsolved problems which would be fixed in future iterations.
-1.  [ ] Link to wireframes and user stories.
+1.  [x] List unsolved problems which would be fixed in future iterations.
+1.  [x] Link to wireframes and user stories.
 
 ### Technical Specifications
 
