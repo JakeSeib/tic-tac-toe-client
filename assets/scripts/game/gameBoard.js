@@ -63,6 +63,23 @@ const isGameOver = gameBoard => {
   }
 }
 
+const countGameResults = gameArray => {
+  // given an array of all previous games from the api, return an object with
+  // keys x, o, draw, and incomplete, with vals equal to the total number of
+  // games with that result
+  const gameResults = {
+    draw: 0,
+    false: 0
+  }
+  gameResults[store.players[0]] = 0
+  gameResults[store.players[1]] = 0
+  gameArray.forEach(game => {
+    gameResults[isGameOver(game.cells)] += 1
+  })
+  return gameResults
+}
+
 module.exports = {
-  isGameOver
+  isGameOver,
+  countGameResults
 }

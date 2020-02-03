@@ -10,12 +10,25 @@ h1 {
   padding: 20px;
 }
 
+h4 {
+  margin: .5rem auto;
+}
+
 p {
   margin: 0 auto;
 }
 
 button {
   padding: 5px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  margin: 2px auto;
+  width: 90%;
 }
 
 .sign-in-wrapper {
@@ -68,6 +81,7 @@ button {
 }
 
 .current-turn-container {
+  font-size: 8vh;
   padding: 10px;
 }
 
