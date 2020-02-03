@@ -61,6 +61,6 @@ Here's a rough sketch of what you should do and in what order:
 
 ### Final Touches
 
-1.  [ ] README
-1.  [ ] Troubleshoot/Debug
-1.  [ ] Style
+1.  [x] README
+1.  [x] Troubleshoot/Debug
+1.  [x] Style
