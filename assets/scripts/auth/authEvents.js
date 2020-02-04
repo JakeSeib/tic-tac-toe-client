@@ -12,6 +12,8 @@ const signInWithData = userData => {
   // and password
   authApi.signIn(userData)
     .then(authUi.onSignInSuccess)
+    // Get list of previous games before creating the new one to avoid counting
+    // the newly created (uncompleted) game in the UI
     .then(response => {
       gameApi.gameIndex()
         .then(gameUi.onGetAllGamesSuccess)

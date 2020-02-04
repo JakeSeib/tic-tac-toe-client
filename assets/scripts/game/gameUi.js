@@ -5,6 +5,11 @@ const gameBoard = require('./gameBoard')
 const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
+  // add the result of previous game to history table before making a new one
+  if (store.user.game) {
+    const tableCell = $(`.history-${store.user.game.over}`, '.game-history-table')
+    tableCell.text(parseInt(tableCell.text()) + 1)
+  }
   store.user.game = response.game
   store.currentPlayerIndex = 0
   $('.main-message').text('')
@@ -43,7 +48,6 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
 }
 
 const onGetAllGamesSuccess = response => {
-  console.log(response.games)
   const allGameResults = gameBoard.countGameResults(response.games)
   Object.keys(allGameResults).forEach(key => {
     $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
