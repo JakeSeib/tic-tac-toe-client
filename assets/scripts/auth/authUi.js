@@ -3,13 +3,13 @@
 const store = require('../store')
 
 const onSignUpSuccess = response => {
-  $('.sign-up-form').trigger('reset')
+  $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
 }
 
 const onSignUpFailure = () => {
-  $('.sign-up-message').text(`Failed to sign up. Ensure that password and \
+  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign up. Ensure that password and \
     password confirmation are the same, or try a different email address.`)
-  $('.sign-up-form').trigger('reset')
+  $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
 
   // clear the message
   // setTimeout(() => {
@@ -28,29 +28,29 @@ const onSignInSuccess = response => {
 }
 
 const onSignInFailure = () => {
-  $('.sign-up-message').text(`Failed to sign in. Ensure that your email and password are correct.`)
-  $('.sign-in-form').trigger('reset')
+  $('.sign-up-message', '.sign-in-wrapper').text(`Failed to sign in. Ensure that your email and password are correct.`)
+  $('.sign-in-form', '.sign-in-wrapper').trigger('reset')
 }
 
 const onChangePwSuccess = () => {
-  $('.auth-message').text(`Successfully changed password! Congrats, ${store.user.email}!`)
-  $('.change-pw-form').trigger('reset')
+  $('.auth-message', '.nav-wrapper').text(`Successfully changed password! Congrats, ${store.user.email}!`)
+  $('.change-pw-form', '.nav-wrapper').trigger('reset')
 }
 
 const onChangePwFailure = () => {
-  $('.auth-message').text(`Failed to change password. Ensure that your current password is correct.`)
-  $('.change-pw-form').trigger('reset')
+  $('.auth-message', '.nav-wrapper').text(`Failed to change password. Ensure that your current password is correct.`)
+  $('.change-pw-form', '.nav-wrapper').trigger('reset')
 }
 
 const onSignOutSuccess = () => {
   $('main').hide()
-  $('.sign-in-wrapper').show()
-  $('.game-history').text('')
+  $('.sign-in-wrapper', 'body').show()
+  $('.game-history', '.nav-wrapper').text('')
   store.user = null
 }
 
 const onSignOutFailure = () => {
-  $('auth-message').text(`Failed to sign out!`)
+  $('auth-message', '.nav-wrapper').text(`Failed to sign out!`)
 }
 
 module.exports = {
