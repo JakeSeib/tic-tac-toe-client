@@ -6,10 +6,12 @@ const gameBoard = require('./gameBoard')
 const store = require('../store')
 
 const onGameBoardCreate = () => {
-  $('.game-space').off('click')
-  $('.game-space').on('click', onGameSpaceClick)
   gameApi.gameBoardCreate()
-    .then(gameUi.onGameBoardCreateSuccess)
+    .then(response => {
+      gameUi.onGameBoardCreateSuccess(response)
+      $('.game-space').off('click')
+      $('.game-space').on('click', onGameSpaceClick)
+    })
     .catch(gameUi.onGameBoardCreateFailure)
 }
 
@@ -64,13 +66,21 @@ const onResumeIncompleteOpen = () => {
 
 const onResumeIncomplete = () => {
   const selectedId = $('.incomplete-id-input', '.resume-incomplete-modal').val()
-  gameApi.getGameById(selectedId)
-    .then(response => {
-      $('.game-space').off('click')
-      $('.game-space').on('click', onGameSpaceClick)
-      gameUi.onResumeIncompleteSuccess(response)
-    })
-    .catch(gameUi.onResumeIncompleteFailure)
+  if (selectedId === '') {
+    $('.resume-incomplete-message').text('Please enter an ID')
+    $('.incomplete-id-input').val('')
+  } else {
+    gameApi.getGameById(selectedId)
+      .then(response => {
+        $('.game-space').off('click')
+        $('.game-space').on('click', onGameSpaceClick)
+        if (store.incompleteGameIds.length === 1) {
+          $('.resume-incomplete-container', '.nav-wrapper').hide()
+        }
+        gameUi.onResumeIncompleteSuccess(response)
+      })
+      .catch(gameUi.onResumeIncompleteFailure)
+  }
 }
 
 module.exports = {
