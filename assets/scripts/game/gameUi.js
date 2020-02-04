@@ -9,6 +9,10 @@ const onGameBoardCreateSuccess = response => {
   if (store.user.game) {
     const tableCell = $(`.history-${store.user.game.over}`, '.game-history-table')
     tableCell.text(parseInt(tableCell.text()) + 1)
+    if (!store.user.game.over) {
+      $('.resume-incomplete-container', '.nav-wrapper').show()
+      store.incompleteGameIds.push(store.user.game.id)
+    }
   }
   store.user.game = response.game
   store.currentPlayerIndex = 0
