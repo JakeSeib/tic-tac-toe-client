@@ -6,10 +6,16 @@ const gameBoard = require('./gameBoard')
 const store = require('../store')
 
 const onGameBoardCreate = () => {
+  $('.game-space').off('click')
   $('.game-space').on('click', onGameSpaceClick)
   gameApi.gameBoardCreate()
     .then(gameUi.onGameBoardCreateSuccess)
     .catch(gameUi.onGameBoardCreateFailure)
+}
+
+const blockGameBoardClicks = () => {
+  $('.game-space', '.game-board-container').off('click')
+  $('.game-space', '.game-board-container').on('click', gameUi.onGameSpaceClickOver)
 }
 
 const onGameSpaceClick = event => {
@@ -24,10 +30,15 @@ const onGameSpaceClick = event => {
     store.user.game.cells[gameSpaceIndex] = currentPlayer
     const winner = gameBoard.isGameOver(store.user.game.cells)
     store.user.game.over = winner
+    if (winner) {
+      blockGameBoardClicks()
+    }
     gameApi.gameSpaceClick(gameSpaceIndex, currentPlayer, winner)
       // store.user.game has already been updated to check for winner, so
       // response is not actually needed for anything
-      .then(response => gameUi.onGameSpaceClickSuccess(gameSpaceDiv, currentPlayer, currentPlayerIndex, winner))
+      .then(response => {
+        gameUi.onGameSpaceClickSuccess(gameSpaceDiv, currentPlayer, currentPlayerIndex, winner)
+      })
       .catch(gameUi.onGameSpaceClickFailure)
   } else {
     gameUi.onGameSpaceClickFailure()

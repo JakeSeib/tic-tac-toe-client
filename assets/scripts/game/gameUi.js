@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const gameBoard = require('./gameBoard')
+const gameEvents = require('./gameEvents')
 const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
@@ -29,8 +30,11 @@ const onGameSpaceClickFailure = () => {
   $('.main-message', '.main-content').text(`Only click empty spaces!`)
 }
 
+const onGameSpaceClickOver = () => {
+  $('.current-turn-container', '.main-content').text(`You must start a new game to do that`)
+}
+
 const onGameOver = winner => {
-  $('.game-space', '.game-board-container').off('click')
   if (store.players.includes(winner)) {
     $('.main-message', '.main-content').addClass('victory-message')
     $('.main-message', '.main-content').text(winner.toUpperCase() + ' wins!')
@@ -75,6 +79,7 @@ module.exports = {
   onGameBoardCreateFailure,
   onGameSpaceClickSuccess,
   onGameSpaceClickFailure,
+  onGameSpaceClickOver,
   onGetAllGamesSuccess,
   onGetAllGamesFailure
 }
