@@ -4,6 +4,23 @@ const store = require('../store')
 const gameBoard = require('./gameBoard')
 const styleVariables = require('../../styles/variables.scss')
 
+const refillGameBoard = gameCells => {
+  // given a game's cells from the api (array of length 9), set the game board
+  // to represent the state of that game
+  for (let i = 0; i < gameCells.length; i++) {
+    const cell = gameCells[i]
+    if (cell) {
+      $(`[data-cell-index="${i}"]`, '.game-board-container')
+        .text(cell.toUpperCase())
+        .css('color', styleVariables.defaultfontcolor)
+    } else {
+      $(`[data-cell-index="${i}"]`, '.game-board-container')
+        .text('_')
+        .css('color', styleVariables.emptyspacecolor)
+    }
+  }
+}
+
 const onGameBoardCreateSuccess = response => {
   // add the result of previous game to history table before making a new one
   if (store.user.game) {
@@ -18,9 +35,7 @@ const onGameBoardCreateSuccess = response => {
   store.currentPlayerIndex = 0
   $('.main-message', '.main-content').removeClass('victory-message')
   $('.main-message', '.main-content').text('')
-  $('.game-space', '.game-board-container')
-    .text('_')
-    .css('color', styleVariables.emptyspacecolor)
+  refillGameBoard(store.user.game.cells)
   $('.current-turn-container', '.main-content').text('Current turn: ' +
   store.players[store.currentPlayerIndex].toUpperCase())
 }

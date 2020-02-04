@@ -55,8 +55,16 @@ const onResumeIncompleteOpen = () => {
   $('.incomplete-id-list', '.resume-incomplete-modal').text(displayText)
 }
 
+const onResumeIncomplete = () => {
+  const selectedId = $('.incomplete-id-input', '.resume-incomplete-modal').val()
+  gameApi.getGameById(selectedId)
+    .then(gameUi.onGameBoardCreateSuccess)
+    .catch(gameUi.onGameBoardCreateFailure)
+}
+
 module.exports = {
   onGameBoardCreate,
   onGameSpaceClick,
-  onResumeIncompleteOpen
+  onResumeIncompleteOpen,
+  onResumeIncomplete
 }
