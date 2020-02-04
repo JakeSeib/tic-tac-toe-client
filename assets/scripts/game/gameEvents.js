@@ -45,7 +45,18 @@ const onGameSpaceClick = event => {
   }
 }
 
+const onResumeIncompleteOpen = () => {
+  let displayText = ''
+  const gameIds = store.incompleteGameIds
+  for (let i = 0; i < (gameIds.length - 1); i++) {
+    displayText += `${gameIds[i]}, `
+  }
+  displayText += gameIds[gameIds.length - 1]
+  $('.incomplete-id-list', '.resume-incomplete-modal').text(displayText)
+}
+
 module.exports = {
   onGameBoardCreate,
-  onGameSpaceClick
+  onGameSpaceClick,
+  onResumeIncompleteOpen
 }

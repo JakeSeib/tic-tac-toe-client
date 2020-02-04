@@ -76,10 +76,12 @@ const countGameResults = gameArray => {
   gameArray.forEach(game => {
     if (!game.over) {
       gameResults['false'] += 1
+      store.incompleteGameIds.push(game.id)
     } else {
       gameResults[isGameOver(game.cells)] += 1
     }
   })
+  store.incompleteGameIds.sort()
   return gameResults
 }
 
