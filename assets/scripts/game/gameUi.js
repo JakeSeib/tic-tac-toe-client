@@ -5,8 +5,14 @@ const gameBoard = require('./gameBoard')
 const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
+  // add the result of previous game to history table before making a new one
+  if (store.user.game) {
+    const tableCell = $(`.history-${store.user.game.over}`, '.game-history-table')
+    tableCell.text(parseInt(tableCell.text()) + 1)
+  }
   store.user.game = response.game
   store.currentPlayerIndex = 0
+  $('.main-message').removeClass('victory-message')
   $('.main-message').text('')
   $('.game-space')
     .text('_')
@@ -29,6 +35,7 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
   if (winner) {
     $('.game-space').off('click')
     if (store.players.includes(winner)) {
+      $('.main-message').addClass('victory-message')
       $('.main-message').text(winner.toUpperCase() + ' wins!')
     } else {
       $('.main-message').text('It\'s a draw!')
@@ -48,7 +55,9 @@ const onGetAllGamesSuccess = response => {
     $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
   })
   if (allGameResults['false'] > 0) {
-    // todo: prompt to continue an incomplete game
+    // todo: prompt to continue an incomplete game. If only getting and
+    // processing index from the server once, whatever is put in here will need
+    // to be repeated elsewhere, i.e. whenever creating a new game
   }
 }
 

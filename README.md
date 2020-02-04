@@ -39,13 +39,17 @@ I focused my plan around grouping together all the game logic in my workflow- cr
 
 See also [the wireframes](/planning/wireframes.md) and [user stories](/planning/user-stories.md) created for this project as part of planning.
 
+For features beyond the MVP, I had planned on showing more detailed game history and from there allowing the user to resume a specified incomplete game (if any existed).
+
+Before adding more detailed game results, the application was getting the full historical data from the server, then processing them for game results, every time a new game was started. After showing the results in more detail, it became necessary to only get historical data on sign-in, and thereafter update the table client-side (while still sending results to the server).
+
 ### How could this be improved?
 
 Being a project completed in four days, there is naturally much room for improvement.
 
-- For starters, the layout and styling could do with a serious overhaul with the help of a designer, rather than continuing to be made up entirely of plain-looking boxes and paragraph elements.
-  - Having square spaces on the game board would make it look more like a traditional game board. This could be accomplished by using images to denote a square filling instead of text.
+- For starters, the layout and styling could do with a serious overhaul with the help of a designer, rather than continuing to be made up entirely of plain-looking boxes and paragraph elements. My goal with the project was not to have aesthetically-pleasing styling, but to make it easy to apply such styling to the whole project if provided.
+  - Having square spaces on the game board would make it look more like a traditional game board. This could be accomplished by swapping between identically-sized square images for an empty square, a square with an X, and a square with an O.
+- The application can become slow to load with lots of historical data, as the result is not stored in the database with any more granularity beyond being 'over' or not. While steps have been taken to ameliorate this on the front-end, the real solution to this problem, if this kind of historical data is desired, would be to store it in the database (which falls outside the scope of this project).
 - Error messages for the user do not always contain relevant information on what caused the error. For example, the same stock message is displayed whenever signing up fails, though it would be possible to check whether password and password confirmation match or not and inform the user of the specific problem if they do not.
-- Rapidly playing through games and beginning new ones can cause the number of completed games shown on the screen to fail to update (the number on the server remains correct).
-- Simply seeing the total number of completed games for a given user is not particularly interesting, and this could be broken out into a more informative breakdown (X wins, O wins, draws, uncompleted). Additionally, an option could be given to go back to uncompleted games and finish them.
+- An option could be given to go back to uncompleted games and finish them.
 - Other play options could be incorporated: playing against someone on another device, or playing against a computer opponent.

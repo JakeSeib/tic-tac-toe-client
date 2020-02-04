@@ -7,16 +7,9 @@ const store = require('../store')
 
 const onGameBoardCreate = () => {
   $('.game-space').on('click', onGameSpaceClick)
-  // Get list of previous games before creating the new one to avoid counting
-  // the newly created (uncompleted) game in the UI
-  gameApi.gameIndex()
-    .then(gameUi.onGetAllGamesSuccess)
-    .then(response => {
-      gameApi.gameBoardCreate()
-        .then(gameUi.onGameBoardCreateSuccess)
-        .catch(gameUi.onGameBoardCreateFailure)
-    })
-    .catch(gameUi.onGetAllGamesFailure)
+  gameApi.gameBoardCreate()
+    .then(gameUi.onGameBoardCreateSuccess)
+    .catch(gameUi.onGameBoardCreateFailure)
 }
 
 const onGameSpaceClick = event => {
@@ -30,6 +23,7 @@ const onGameSpaceClick = event => {
     const currentPlayer = store.players[currentPlayerIndex]
     store.user.game.cells[gameSpaceIndex] = currentPlayer
     const winner = gameBoard.isGameOver(store.user.game.cells)
+    store.user.game.over = winner
     gameApi.gameSpaceClick(gameSpaceIndex, currentPlayer, winner)
       // store.user.game has already been updated to check for winner, so
       // response is not actually needed for anything
