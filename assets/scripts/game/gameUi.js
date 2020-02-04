@@ -92,6 +92,17 @@ const onGetAllGamesFailure = () => {
   $('.game-history', '.nav-wrapper').text(`Failed to get game history`)
 }
 
+const onResumeIncompleteSuccess = response => {
+  onGameBoardCreateSuccess(response)
+  $('.resume-incomplete-message').text('Game retrieved!')
+  $('.incomplete-id-input').val('')
+}
+
+const onResumeIncompleteFailure = () => {
+  $('.resume-incomplete-message').text('Failed to retrieve game')
+  $('.incomplete-id-input').val('')
+}
+
 module.exports = {
   onGameBoardCreateSuccess,
   onGameBoardCreateFailure,
@@ -99,5 +110,7 @@ module.exports = {
   onGameSpaceClickFailure,
   onGameSpaceClickOver,
   onGetAllGamesSuccess,
-  onGetAllGamesFailure
+  onGetAllGamesFailure,
+  onResumeIncompleteSuccess,
+  onResumeIncompleteFailure
 }

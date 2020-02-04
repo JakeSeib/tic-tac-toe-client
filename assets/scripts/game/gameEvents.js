@@ -58,8 +58,8 @@ const onResumeIncompleteOpen = () => {
 const onResumeIncomplete = () => {
   const selectedId = $('.incomplete-id-input', '.resume-incomplete-modal').val()
   gameApi.getGameById(selectedId)
-    .then(gameUi.onGameBoardCreateSuccess)
-    .catch(gameUi.onGameBoardCreateFailure)
+    .then(gameUi.onResumeIncompleteSuccess)
+    .catch(gameUi.onResumeIncompleteFailure)
 }
 
 module.exports = {
