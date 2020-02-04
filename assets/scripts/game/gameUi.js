@@ -12,6 +12,7 @@ const onGameBoardCreateSuccess = response => {
   }
   store.user.game = response.game
   store.currentPlayerIndex = 0
+  $('.main-message').removeClass('victory-message')
   $('.main-message').text('')
   $('.game-space')
     .text('_')
@@ -34,6 +35,7 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
   if (winner) {
     $('.game-space').off('click')
     if (store.players.includes(winner)) {
+      $('.main-message').addClass('victory-message')
       $('.main-message').text(winner.toUpperCase() + ' wins!')
     } else {
       $('.main-message').text('It\'s a draw!')
