@@ -35,10 +35,12 @@ const onGameSpaceClick = event => {
     if (winner) {
       blockGameBoardClicks()
       // if newly finished game was previously stored as incomplete, remove it
-      // from list of incomplete game id's
+      // from list of incomplete game id's and update table
       const gameIncompleteIndex = store.incompleteGameIds.indexOf(store.user.game.id)
       if (gameIncompleteIndex >= 0) {
         store.incompleteGameIds.splice(gameIncompleteIndex, 1)
+        const tableCell = $(`.history-false`, '.game-history-table')
+        tableCell.text(parseInt(tableCell.text()) - 1)
       }
     }
     gameApi.gameSpaceClick(gameSpaceIndex, currentPlayer, winner)
@@ -72,12 +74,21 @@ const onResumeIncomplete = () => {
   } else {
     gameApi.getGameById(selectedId)
       .then(response => {
-        $('.game-space').off('click')
-        $('.game-space').on('click', onGameSpaceClick)
-        if (store.incompleteGameIds.length === 1) {
-          $('.resume-incomplete-container', '.nav-wrapper').hide()
+        if (response.game.over) {
+          // retrieved a game that was already over
+          gameUi.refillGameBoard(response.game.cells)
+          store.user.game = null
+          blockGameBoardClicks()
+          $('.main-message', '.main-content').removeClass('victory-message')
+          $('.main-message', '.main-content').text('You retrieved a completed game! Why would you do that?')
+        } else {
+          $('.game-space').off('click')
+          $('.game-space').on('click', onGameSpaceClick)
+          if (store.incompleteGameIds.length === 1) {
+            $('.resume-incomplete-container', '.nav-wrapper').hide()
+          }
+          gameUi.onResumeIncompleteSuccess(response)
         }
-        gameUi.onResumeIncompleteSuccess(response)
       })
       .catch(gameUi.onResumeIncompleteFailure)
   }

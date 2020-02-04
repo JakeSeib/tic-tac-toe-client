@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const gameBoard = require('./gameBoard')
+const gameEvents = require('./gameEvents')
 const styleVariables = require('../../styles/variables.scss')
 
 const refillGameBoard = gameCells => {
@@ -25,10 +26,16 @@ const onGameBoardCreateSuccess = response => {
   // add the result of previous game to history table before making a new one
   if (store.user.game) {
     const tableCell = $(`.history-${store.user.game.over}`, '.game-history-table')
-    tableCell.text(parseInt(tableCell.text()) + 1)
+    // game is incomplete
     if (!store.user.game.over) {
       $('.resume-incomplete-container', '.nav-wrapper').show()
-      store.incompleteGameIds.push(store.user.game.id)
+      // game is not already marked as incomplete in store and table
+      if (store.incompleteGameIds.indexOf(store.user.game.id) < 0) {
+        store.incompleteGameIds.push(store.user.game.id)
+        tableCell.text(parseInt(tableCell.text()) + 1)
+      }
+    } else {
+      tableCell.text(parseInt(tableCell.text()) + 1)
     }
   }
   store.user.game = response.game
@@ -104,6 +111,7 @@ const onResumeIncompleteFailure = () => {
 }
 
 module.exports = {
+  refillGameBoard,
   onGameBoardCreateSuccess,
   onGameBoardCreateFailure,
   onGameSpaceClickSuccess,
