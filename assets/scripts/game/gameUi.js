@@ -12,39 +12,43 @@ const onGameBoardCreateSuccess = response => {
   }
   store.user.game = response.game
   store.currentPlayerIndex = 0
-  $('.main-message').removeClass('victory-message')
-  $('.main-message').text('')
-  $('.game-space')
+  $('.main-message', '.main-content').removeClass('victory-message')
+  $('.main-message', '.main-content').text('')
+  $('.game-space', '.game-board-container')
     .text('_')
     .css('color', styleVariables.emptyspacecolor)
-  $('.current-turn-container').text('Current turn: ' +
+  $('.current-turn-container', '.main-content').text('Current turn: ' +
   store.players[store.currentPlayerIndex].toUpperCase())
 }
 
 const onGameBoardCreateFailure = () => {
-  $('.main-message').text(`Failed to create new game!`)
+  $('.main-message', '.main-content').text(`Failed to create new game!`)
 }
 
 const onGameSpaceClickFailure = () => {
-  $('.main-message').text(`Only click empty spaces!`)
+  $('.main-message', '.main-content').text(`Only click empty spaces!`)
+}
+
+const onGameOver = winner => {
+  $('.game-space', '.game-board-container').off('click')
+  if (store.players.includes(winner)) {
+    $('.main-message', '.main-content').addClass('victory-message')
+    $('.main-message', '.main-content').text(winner.toUpperCase() + ' wins!')
+  } else {
+    $('.main-message', '.main-content').text('It\'s a draw!')
+  }
 }
 
 const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex, winner) => {
   gameSpaceDiv.text(currentPlayer.toUpperCase())
     .css('color', styleVariables.defaultfontcolor)
   if (winner) {
-    $('.game-space').off('click')
-    if (store.players.includes(winner)) {
-      $('.main-message').addClass('victory-message')
-      $('.main-message').text(winner.toUpperCase() + ' wins!')
-    } else {
-      $('.main-message').text('It\'s a draw!')
-    }
+    onGameOver(winner)
   } else {
     const newPlayerIndex = Math.abs(currentPlayerIndex - 1)
     store.currentPlayerIndex = newPlayerIndex
-    $('.main-message').text('')
-    $('.current-turn-container').text('Current turn: ' +
+    $('.main-message', '.main-content').text('')
+    $('.current-turn-container', '.main-content').text('Current turn: ' +
     store.players[newPlayerIndex].toUpperCase())
   }
 }
@@ -58,11 +62,12 @@ const onGetAllGamesSuccess = response => {
     // todo: prompt to continue an incomplete game. If only getting and
     // processing index from the server once, whatever is put in here will need
     // to be repeated elsewhere, i.e. whenever creating a new game
+    $('.resume-incomplete-container', '.nav-wrapper').show()
   }
 }
 
 const onGetAllGamesFailure = () => {
-  $('.game-history').text(`Failed to get game history`)
+  $('.game-history', '.nav-wrapper').text(`Failed to get game history`)
 }
 
 module.exports = {
