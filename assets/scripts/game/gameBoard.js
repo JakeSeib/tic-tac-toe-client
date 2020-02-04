@@ -85,13 +85,27 @@ const countGameResults = gameArray => {
   return gameResults
 }
 
-const setCurrentPlayer = gameCells => {
-  // given an array of length 9 representing an in-progress game, set the
-  // current player index in store
+const findCurrentPlayerIndex = gameCells => {
+  // given an array of length 9 representing an in-progress game (formatted as
+  // the api expects), return the current player index
+  let numX = 0
+  let numO = 0
+  gameCells.forEach(cell => {
+    if (cell === 'x') {
+      numX += 1
+    } else if (cell === 'o') {
+      numO += 1
+    }
+  })
+  if (numO >= numX) {
+    return 0
+  } else {
+    return 1
+  }
 }
 
 module.exports = {
   isGameOver,
   countGameResults,
-  setCurrentPlayer
+  findCurrentPlayerIndex
 }

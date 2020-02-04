@@ -2,7 +2,6 @@
 
 const store = require('../store')
 const gameBoard = require('./gameBoard')
-const gameEvents = require('./gameEvents')
 const styleVariables = require('../../styles/variables.scss')
 
 const refillGameBoard = gameCells => {
@@ -39,7 +38,7 @@ const onGameBoardCreateSuccess = response => {
     }
   }
   store.user.game = response.game
-  store.currentPlayerIndex = 0
+  store.currentPlayerIndex = gameBoard.findCurrentPlayerIndex(store.user.game.cells)
   $('.main-message', '.main-content').removeClass('victory-message')
   $('.main-message', '.main-content').text('')
   refillGameBoard(store.user.game.cells)
