@@ -2,7 +2,6 @@
 
 const store = require('../store')
 const gameBoard = require('./gameBoard')
-const gameEvents = require('./gameEvents')
 const styleVariables = require('../../styles/variables.scss')
 
 const onGameBoardCreateSuccess = response => {
