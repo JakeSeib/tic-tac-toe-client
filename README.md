@@ -47,7 +47,7 @@ Before adding more detailed game results, the application was getting the full h
 
 Being a project completed in four days, there is naturally much room for improvement.
 
-- For starters, the layout and styling could do with a serious overhaul with the help of a designer, rather than continuing to be made up entirely of plain-looking boxes and paragraph elements.
+- For starters, the layout and styling could do with a serious overhaul with the help of a designer, rather than continuing to be made up entirely of plain-looking boxes and paragraph elements. My goal with the project was not to have aesthetically-pleasing styling, but to make it easy to apply such styling to the whole project if provided.
   - Having square spaces on the game board would make it look more like a traditional game board. This could be accomplished by swapping between identically-sized square images for an empty square, a square with an X, and a square with an O.
 - The application can become slow to load with lots of historical data, as the result is not stored in the database with any more granularity beyond being 'over' or not. While steps have been taken to ameliorate this on the front-end, the real solution to this problem, if this kind of historical data is desired, would be to store it in the database (which falls outside the scope of this project).
 - Error messages for the user do not always contain relevant information on what caused the error. For example, the same stock message is displayed whenever signing up fails, though it would be possible to check whether password and password confirmation match or not and inform the user of the specific problem if they do not.
