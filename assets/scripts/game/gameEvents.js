@@ -32,6 +32,12 @@ const onGameSpaceClick = event => {
     store.user.game.over = winner
     if (winner) {
       blockGameBoardClicks()
+      // if newly finished game was previously stored as incomplete, remove it
+      // from list of incomplete game id's
+      const gameIncompleteIndex = store.incompleteGameIds.indexOf(store.user.game.id)
+      if (gameIncompleteIndex >= 0) {
+        store.incompleteGameIds.splice(gameIncompleteIndex, 1)
+      }
     }
     gameApi.gameSpaceClick(gameSpaceIndex, currentPlayer, winner)
       // store.user.game has already been updated to check for winner, so
@@ -46,6 +52,7 @@ const onGameSpaceClick = event => {
 }
 
 const onResumeIncompleteOpen = () => {
+  $('.resume-incomplete-message').text('')
   let displayText = ''
   const gameIds = store.incompleteGameIds
   for (let i = 0; i < (gameIds.length - 1); i++) {
@@ -58,7 +65,11 @@ const onResumeIncompleteOpen = () => {
 const onResumeIncomplete = () => {
   const selectedId = $('.incomplete-id-input', '.resume-incomplete-modal').val()
   gameApi.getGameById(selectedId)
-    .then(gameUi.onResumeIncompleteSuccess)
+    .then(response => {
+      $('.game-space').off('click')
+      $('.game-space').on('click', onGameSpaceClick)
+      gameUi.onResumeIncompleteSuccess(response)
+    })
     .catch(gameUi.onResumeIncompleteFailure)
 }
 
