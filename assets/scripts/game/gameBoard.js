@@ -76,14 +76,36 @@ const countGameResults = gameArray => {
   gameArray.forEach(game => {
     if (!game.over) {
       gameResults['false'] += 1
+      store.incompleteGameIds.push(game.id)
     } else {
       gameResults[isGameOver(game.cells)] += 1
     }
   })
+  store.incompleteGameIds.sort()
   return gameResults
+}
+
+const findCurrentPlayerIndex = gameCells => {
+  // given an array of length 9 representing an in-progress game (formatted as
+  // the api expects), return the current player index
+  let numX = 0
+  let numO = 0
+  gameCells.forEach(cell => {
+    if (cell === 'x') {
+      numX += 1
+    } else if (cell === 'o') {
+      numO += 1
+    }
+  })
+  if (numO >= numX) {
+    return 0
+  } else {
+    return 1
+  }
 }
 
 module.exports = {
   isGameOver,
-  countGameResults
+  countGameResults,
+  findCurrentPlayerIndex
 }

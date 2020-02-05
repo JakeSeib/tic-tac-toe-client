@@ -17,9 +17,9 @@ const signInWithData = userData => {
     .then(response => {
       gameApi.gameIndex()
         .then(gameUi.onGetAllGamesSuccess)
+        .then(gameEvents.onGameBoardCreate)
         .catch(gameUi.onGetAllGamesFailure)
     })
-    .then(gameEvents.onGameBoardCreate)
     .catch(authUi.onSignInFailure)
 }
 

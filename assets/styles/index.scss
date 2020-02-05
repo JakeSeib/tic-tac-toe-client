@@ -48,6 +48,12 @@ table {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1000px) {
+  .game-history-table {
+    font-size: .8rem;
+  }
+}
+
 .main-nav {
   border: 1px solid $default-border-color;
 }
@@ -81,7 +87,7 @@ table {
 }
 
 .current-turn-container {
-  font-size: 8vh;
+  font-size: 5vh;
   padding: 10px;
 }
 

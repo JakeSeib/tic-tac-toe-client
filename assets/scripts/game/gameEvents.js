@@ -6,10 +6,12 @@ const gameBoard = require('./gameBoard')
 const store = require('../store')
 
 const onGameBoardCreate = () => {
-  $('.game-space').off('click')
-  $('.game-space').on('click', onGameSpaceClick)
   gameApi.gameBoardCreate()
-    .then(gameUi.onGameBoardCreateSuccess)
+    .then(response => {
+      gameUi.onGameBoardCreateSuccess(response)
+      $('.game-space').off('click')
+      $('.game-space').on('click', onGameSpaceClick)
+    })
     .catch(gameUi.onGameBoardCreateFailure)
 }
 
@@ -32,6 +34,14 @@ const onGameSpaceClick = event => {
     store.user.game.over = winner
     if (winner) {
       blockGameBoardClicks()
+      // if newly finished game was previously stored as incomplete, remove it
+      // from list of incomplete game id's and update table
+      const gameIncompleteIndex = store.incompleteGameIds.indexOf(store.user.game.id)
+      if (gameIncompleteIndex >= 0) {
+        store.incompleteGameIds.splice(gameIncompleteIndex, 1)
+        const tableCell = $(`.history-false`, '.game-history-table')
+        tableCell.text(parseInt(tableCell.text()) - 1)
+      }
     }
     gameApi.gameSpaceClick(gameSpaceIndex, currentPlayer, winner)
       // store.user.game has already been updated to check for winner, so
@@ -45,7 +55,51 @@ const onGameSpaceClick = event => {
   }
 }
 
+const onResumeIncompleteOpen = () => {
+  $('.resume-incomplete-message').text('')
+  let displayText = ''
+  const gameIds = store.incompleteGameIds
+  for (let i = 0; i < (gameIds.length - 1); i++) {
+    displayText += `${gameIds[i]}, `
+  }
+  displayText += gameIds[gameIds.length - 1]
+  $('.incomplete-id-list', '.resume-incomplete-modal').text(displayText)
+}
+
+const onResumeIncomplete = () => {
+  const selectedId = $('.incomplete-id-input', '.resume-incomplete-modal').val()
+  if (selectedId === '') {
+    $('.resume-incomplete-message').text('Please enter an ID')
+    $('.incomplete-id-input').val('')
+  } else {
+    gameApi.getGameById(selectedId)
+      .then(response => {
+        if (response.game.over) {
+          // retrieved a game that was already over
+          gameUi.refillGameBoard(response.game.cells)
+          store.user.game = null
+          blockGameBoardClicks()
+          $('.main-message', '.main-content').removeClass('victory-message')
+          $('.main-message', '.main-content').text('You retrieved a completed game! Why would you do that?')
+        } else {
+          $('.game-space').off('click')
+          $('.game-space').on('click', onGameSpaceClick)
+          // hide if current game is over AND the last incomplete game in store
+          // is being resumed
+          if (store.user.game.over &&
+            (store.incompleteGameIds.length === 1)) {
+            $('.resume-incomplete-container', '.nav-wrapper').hide()
+          }
+          gameUi.onResumeIncompleteSuccess(response)
+        }
+      })
+      .catch(gameUi.onResumeIncompleteFailure)
+  }
+}
+
 module.exports = {
   onGameBoardCreate,
-  onGameSpaceClick
+  onGameSpaceClick,
+  onResumeIncompleteOpen,
+  onResumeIncomplete
 }

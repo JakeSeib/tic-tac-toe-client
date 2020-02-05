@@ -39,7 +39,7 @@ const gameIndex = (over) => {
   // Get all games associated with a user. Optional over parameter can be either
   // 'true' or 'false' to restrict results to games with matching over property
   let overQuery = ''
-  if ([true, false].includes(over)) {
+  if (['true', 'false'].includes(over)) {
     overQuery = `?over=${over}`
   }
   return $.ajax({
@@ -51,8 +51,19 @@ const gameIndex = (over) => {
   })
 }
 
+const getGameById = id => {
+  return $.ajax({
+    url: `${config.apiUrl}/games/${id}`,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   gameBoardCreate,
   gameSpaceClick,
-  gameIndex
+  gameIndex,
+  getGameById
 }
