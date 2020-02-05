@@ -21,6 +21,29 @@ const refillGameBoard = gameCells => {
   }
 }
 
+const onResumeGameSuccess = response => {
+  const tableCell = $(`.history-${store.user.game.over}`, '.game-history-table')
+  // if current game is over OR is incomplete but is a new incomplete game,
+  // update the game history table
+  if (store.user.game.over ||
+  (store.incompleteGameIds.indexOf(store.user.game.id) < 0)) {
+    tableCell.text(parseInt(tableCell.text()) + 1)
+  }
+  // if current game is incomplete and is not a previously loaded incomplete
+  // game that is still incomplete, add it to store
+  if (!store.user.game.over &&
+  (store.incompleteGameIds.indexOf(store.user.game.id) < 0)) {
+    store.incompleteGameIds.push(store.user.game.id)
+  }
+  store.user.game = response.game
+  store.currentPlayerIndex = gameBoard.findCurrentPlayerIndex(store.user.game.cells)
+  $('.main-message', '.main-content').removeClass('victory-message')
+  $('.main-message', '.main-content').text('')
+  refillGameBoard(store.user.game.cells)
+  $('.current-turn-container', '.main-content').text('Current turn: ' +
+  store.players[store.currentPlayerIndex].toUpperCase())
+}
+
 const onGameBoardCreateSuccess = response => {
   // add the result of previous game to history table before making a new one
   if (store.user.game) {
@@ -33,15 +56,15 @@ const onGameBoardCreateSuccess = response => {
         store.incompleteGameIds.push(store.user.game.id)
         tableCell.text(parseInt(tableCell.text()) + 1)
       }
-    } else {
-      tableCell.text(parseInt(tableCell.text()) + 1)
     }
   }
   store.user.game = response.game
-  store.currentPlayerIndex = gameBoard.findCurrentPlayerIndex(store.user.game.cells)
+  store.currentPlayerIndex = 0
   $('.main-message', '.main-content').removeClass('victory-message')
   $('.main-message', '.main-content').text('')
-  refillGameBoard(store.user.game.cells)
+  $('.game-space', '.game-board-container')
+    .text('_')
+    .css('color', styleVariables.emptyspacecolor)
   $('.current-turn-container', '.main-content').text('Current turn: ' +
   store.players[store.currentPlayerIndex].toUpperCase())
 }
@@ -87,9 +110,6 @@ const onGetAllGamesSuccess = response => {
     $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
   })
   if (allGameResults['false'] > 0) {
-    // todo: prompt to continue an incomplete game. If only getting and
-    // processing index from the server once, whatever is put in here will need
-    // to be repeated elsewhere, i.e. whenever creating a new game
     $('.resume-incomplete-container', '.nav-wrapper').show()
   }
 }
@@ -99,7 +119,7 @@ const onGetAllGamesFailure = () => {
 }
 
 const onResumeIncompleteSuccess = response => {
-  onGameBoardCreateSuccess(response)
+  onResumeGameSuccess(response)
   $('.resume-incomplete-message').text('Game retrieved!')
   $('.incomplete-id-input').val('')
 }

@@ -44,6 +44,7 @@ const onChangePwFailure = () => {
 
 const onSignOutSuccess = () => {
   $('main').hide()
+  $('.resume-incomplete-container', '.nav-wrapper').hide()
   $('.sign-in-wrapper', 'body').show()
   $('.game-history', '.nav-wrapper').text('')
   store.incompleteGameIds = []

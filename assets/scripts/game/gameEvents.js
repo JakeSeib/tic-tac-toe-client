@@ -84,7 +84,10 @@ const onResumeIncomplete = () => {
         } else {
           $('.game-space').off('click')
           $('.game-space').on('click', onGameSpaceClick)
-          if (store.incompleteGameIds.length === 1) {
+          // hide if current game is over AND the last incomplete game in store
+          // is being resumed
+          if (store.user.game.over &&
+            (store.incompleteGameIds.length === 1)) {
             $('.resume-incomplete-container', '.nav-wrapper').hide()
           }
           gameUi.onResumeIncompleteSuccess(response)
