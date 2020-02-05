@@ -46,6 +46,7 @@ const onSignOutSuccess = () => {
   $('main').hide()
   $('.resume-incomplete-container', '.nav-wrapper').hide()
   $('.sign-in-wrapper', 'body').show()
+  $('.change-pw-form', '.nav-wrapper').trigger('reset')
   $('.game-history', '.nav-wrapper').text('')
   store.incompleteGameIds = []
   store.user = null
