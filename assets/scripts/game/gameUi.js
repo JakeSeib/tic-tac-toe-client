@@ -56,6 +56,8 @@ const onGameBoardCreateSuccess = response => {
         store.incompleteGameIds.push(store.user.game.id)
         tableCell.text(parseInt(tableCell.text()) + 1)
       }
+    } else {
+      tableCell.text(parseInt(tableCell.text()) + 1)
     }
   }
   store.user.game = response.game
