@@ -32,14 +32,31 @@ table {
 }
 
 .sign-in-wrapper {
-  border: 1px solid $default-border-color;
   font-family: $default-font-family;
-  margin-top: 10%;
+  margin-top: 5%;
+}
+
+.sign-in-form-wrapper {
+  border: 1px solid $default-border-color;
+  margin-top: 5%;
   padding: 10px;
+}
+
+.security-warning {
+  font-size: 80%;
+  padding-top: 15px;
 }
 
 .signed-in-message {
   padding: 10px;
+}
+
+.welcome-msg {
+  text-align: center;
+}
+
+.login-help-btn {
+  margin-top: 5px;
 }
 
 @media screen and (min-width: 768px) {
