@@ -30,8 +30,8 @@ const isGameOver = gameBoard => {
   for (let i = 0; i < gameBoardRows.length; i++) {
     const row = gameBoardRows[i]
     if (row.every(element => element === row[0]) &&
-    store.players.includes(row[0])) {
-      return row[0]
+    store.players.includes(row[0].toLowerCase())) {
+      return row[0].toLowerCase()
     }
   }
 
@@ -39,8 +39,8 @@ const isGameOver = gameBoard => {
   for (let i = 0; i < 3; i++) {
     const col = [gameBoardRows[0][i], gameBoardRows[1][i], gameBoardRows[2][i]]
     if (col.every(element => element === col[0]) &&
-      store.players.includes(col[0])) {
-      return col[0]
+      store.players.includes(col[0].toLowerCase())) {
+      return col[0].toLowerCase()
     }
   }
 
@@ -48,11 +48,11 @@ const isGameOver = gameBoard => {
   const diag1 = [gameBoard[0], gameBoard[4], gameBoard[8]]
   const diag2 = [gameBoard[2], gameBoard[4], gameBoard[6]]
   if (diag1.every(element => element === diag1[0]) &&
-  store.players.includes(diag1[0])) {
-    return diag1[0]
+  store.players.includes(diag1[0].toLowerCase())) {
+    return diag1[0].toLowerCase()
   } else if (diag2.every(element => element === diag2[0]) &&
-  store.players.includes(diag2[0])) {
-    return diag2[0]
+  store.players.includes(diag2[0].toLowerCase())) {
+    return diag2[0].toLowerCase()
   }
 
   // check if the game board has any free spaces left
@@ -91,9 +91,9 @@ const findCurrentPlayerIndex = gameCells => {
   let numX = 0
   let numO = 0
   gameCells.forEach(cell => {
-    if (cell === 'x') {
+    if (cell.toLowerCase() === 'x') {
       numX += 1
-    } else if (cell === 'o') {
+    } else if (cell.toLowerCase() === 'o') {
       numO += 1
     }
   })
