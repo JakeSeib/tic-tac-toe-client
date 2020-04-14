@@ -1,3 +1,8 @@
+Todo
+- setup: npminstall
+- start dev server: grunt serve
+
+
 ## Overview
 
 This is a SPA written in Javascript that allows the user to play multiple games of tic-tac-toe, using a third-party API deployed on Heroku to store historical game data.
@@ -32,8 +37,19 @@ It also avoids counting a fresh game as incomplete for the purposes of game stat
 
 A new game is treated as incomplete only when a user navigates to a different game (resetting the board, resuming a previously incomplete game, or logging out, which will automatically create a new game on login) before completing the current one.
 
-## Development
+## Set Up
+### Dependencies
+-   [browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template)
 
+### Run development server
+```
+// install dependencies
+npm install
+// launch development server
+grunt serve
+```
+
+## Development
 ### Planning
 
 Roughly, the route to having a working MVP was plotted as follows:
