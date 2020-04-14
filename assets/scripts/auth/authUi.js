@@ -24,6 +24,7 @@ const onSignInSuccess = response => {
   $('main').show()
   $('.sign-in-wrapper').hide()
   $('.sign-in-form').trigger('reset')
+  $('.sign-up-form', '.sign-in-wrapper').trigger('reset')
   store.user = response.user
 }
 

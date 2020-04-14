@@ -107,6 +107,7 @@ const onGameSpaceClickSuccess = (gameSpaceDiv, currentPlayer, currentPlayerIndex
 }
 
 const onGetAllGamesSuccess = response => {
+  console.log('all games', response.games)
   const allGameResults = gameBoard.countGameResults(response.games)
   Object.keys(allGameResults).forEach(key => {
     $(`.history-${key}`, '.game-history-table').text(allGameResults[key])
