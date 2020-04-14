@@ -65,8 +65,8 @@ const isGameOver = gameBoard => {
 
 const countGameResults = gameArray => {
   // given an array of all previous games from the api, return an object with
-  // keys x, o, draw, and incomplete, with vals equal to the total number of
-  // games with that result
+  // keys x, o, draw, and false (for incomplete games), with vals equal to the
+  // total number of games with that result
   const gameResults = {
     draw: 0,
     false: 0
