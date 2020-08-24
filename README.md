@@ -1,11 +1,13 @@
 Todo
-- setup: npminstall
+- setup: npm install
 - start dev server: grunt serve
 
 
 ## Overview
 
-This is a SPA written in Javascript that allows the user to play multiple games of tic-tac-toe, using a third-party API deployed on Heroku to store historical game data.
+This is a SPA written in Javascript that allows the user to play multiple games of tic-tac-toe, using a cloned version of General Assembly's tic-tac-toe API deployed on Heroku to store historical game data.
+
+My version of the API can be found here: https://github.com/JakeSeib/tic-tac-toe-api
 
 ## How to Play
 
