@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+
+      <div class='sign-in-wrapper container'>
+        <div class='welcome-msg container'>
+          <h2>Welcome to Tic-Tac-Toe!</h2>
+          <p class='message'>Please note that when first signing up, it is normal for the app to take several seconds to respond as the API wakes up</p>
+        </div>
+        <div class='sign-in-form-wrapper'>
+          <p class='message sign-up-message'></p>
+          <form class='sign-up-form'>
+            <fieldset>
+              <legend>Sign Up*</legend>
+              <label>Email
+                <input class='signup email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+              </label>
+              <label>Password
+                <input class='signup pw-input' name='credentials[password]' type='password' placeholder='Password'>
+              </label>
+              <label>Confirm Password
+                <input class='signup pw-input' name='credentials[password_confirmation]' type='password' placeholder='Confirm Password'>
+              </label>
+              <input class='btn-primary' type='submit' value='Sign Up'>
+            </fieldset>
+          </form>
+
+          <form class='sign-in-form'>
+            <fieldset>
+              <legend>Log In</legend>
+              <label>Email
+                <input class='signin email-input' name='credentials[email]' type='email' placeholder='example@example.com'>
+              </label>
+              <label>Password
+                <input class='signin pw-input' name='credentials[password]' type='password' placeholder='Password'>
+              </label>
+              <input class='btn-primary' type='submit' value='Log In'>
+            </fieldset>
+          </form>
+          <p class='message security-warning'>*This is a toy app that was not created with security in mind. Do not use real credentials</p>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn-danger login-help-btn" data-toggle="modal" data-target="#exampleModal">
+          Help
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signing Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>This app was created as part of General Assembly's Software Engineering Immersive. Basic user authentication functionality was required for successful completion. However, if you want to bypass that part of the app, there is no requirement to use a real email address (in fact, it is highly recommended not to).</p>
+                </br>
+                <p>If you would rather not sign up yourself, you may try signing in with email 'example@example.org' and password 'test', though be aware that multiple users being logged into the same account simultaneously may result in unexpected behavior. If using this method, please do not change the account's password.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <main class='container-fluid'>
+        <div class='row'>
+          <nav class='main-nav col-md-3'>
+            <div class='nav-wrapper'>
+              <p class='message signed-in-message col-12 text-center'></p>
+              <form class='change-pw-form'>
+                <fieldset>
+                  <legend>Change Password</legend>
+                  <label>Current Password
+                    <input class='change-pw pw-input' name='passwords[old]' type='password' placeholder='Password'>
+                  </label>
+                  <label>New Password
+                    <input class='change-pw pw-input' name='passwords[new]' type='password' placeholder='New Password'>
+                  </label>
+                  <input type='submit' value='Change password'>
+                </fieldset>
+              </form>
+
+              <p class='auth-message col-12'></p>
+
+              <h4 class='text-center'>Game History</h4>
+              <table class='game-history-table text-center'>
+                <tr>
+                  <th>X Wins</th>
+                  <th>O Wins</th>
+                  <th>Draws</th>
+                  <th>Incomplete</th>
+                </tr>
+                <tr>
+                  <td class='history-x'>0</td>
+                  <td class='history-o'>0</td>
+                  <td class='history-draw'>0</td>
+                  <td class='history-false'>0</td>
+                </tr>
+              </table>
+              <p class='game-history col-12'></p>
+
+              <!-- Button trigger modal -->
+              <div class='resume-incomplete-container'>
+                <label>Choose an incomplete game to resume:
+                  <button type="button" class="resume-incomplete-open btn btn-primary" data-toggle="modal" data-target=".resume-incomplete-modal">
+                    Choose
+                  </button>
+                </label>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade resume-incomplete-modal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Resume Incomplete Game</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h4>IDs of incomplete games</h4>
+                      <p class='incomplete-id-list'></p>
+                      <p class='resume-incomplete-message'></p>
+                      <label>ID of game to resume
+                        <input class='incomplete-id-input' type='number' placeholder='ID'>
+                      </label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary resume-incomplete-confirm">Resume selected</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <form class='sign-out-form'>
+                <fieldset>
+                  <input type='submit' value='Log Out'>
+                </fieldset>
+              </form>
+            </div>
+          </nav>
+
+          <div class='main-content col-md-9'>
+            <h1 class='text-center'>Tic-Tac-Toe</h1>
+            <div class='game-board-container container text-center'>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='0'>_</div>
+                <div class='game-space col-4' data-cell-index='1'>_</div>
+                <div class='game-space col-4' data-cell-index='2'>_</div>
+              </div>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='3'>_</div>
+                <div class='game-space col-4' data-cell-index='4'>_</div>
+                <div class='game-space col-4' data-cell-index='5'>_</div>
+              </div>
+              <div class='row'>
+                <div class='game-space col-4' data-cell-index='6'>_</div>
+                <div class='game-space col-4' data-cell-index='7'>_</div>
+                <div class='game-space col-4' data-cell-index='8'>_</div>
+              </div>
+            </div>
+            <p class='message main-message col-12 text-center'></p>
+            <div class='current-turn-container text-center'></div>
+            <button type='button' class='new-game-btn'>New Game</button>
+          </div>
+        </div>
+
+      </main>
+
+    </body>
+</html>
